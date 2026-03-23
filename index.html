@@ -1677,6 +1677,73 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
 .nde-ok      { color: var(--green); background: var(--green-d); border: 1px solid #00D68F30;
   font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; }
+
+/* ═══════════════════════ MRO INVENTORY ═══════════════════════ */
+.inv-tier-llp      {background:#FEF2F2;color:#991B1B;border:1px solid #FECACA;font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;}
+.inv-tier-rotable  {background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA;font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;}
+.inv-tier-expendable{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;}
+.inv-tier-consumable{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:700;}
+[data-theme="dark"] .inv-tier-llp      {background:#991B1B20;color:#FCA5A5;border-color:#991B1B40;}
+[data-theme="dark"] .inv-tier-rotable  {background:#C2410C20;color:#FDBA74;border-color:#C2410C40;}
+[data-theme="dark"] .inv-tier-expendable{background:#1D4ED820;color:#93C5FD;border-color:#1D4ED840;}
+[data-theme="dark"] .inv-tier-consumable{background:#15803D20;color:#86EFAC;border-color:#15803D40;}
+
+.inv-cond-new        {background:var(--green-d,#00D68F15);color:var(--green,#00D68F);border:1px solid #00D68F30;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-cond-svc        {background:var(--blue-d,#4D9EFF15);color:var(--blue,#4D9EFF);border:1px solid var(--blue-g,#4D9EFF30);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-cond-oh         {background:var(--purple-d,#7C5CFC15);color:var(--purple,#7C5CFC);border:1px solid #7C5CFC30;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-cond-ar         {background:var(--amber-d,#FFB83015);color:var(--amber,#FFB830);border:1px solid #FFB83030;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-cond-quar       {background:var(--red-d,#FF456015);color:var(--red,#FF4560);border:1px solid #FF456030;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+
+.inv-status-stock    {background:var(--green-d,#00D68F15);color:var(--green,#00D68F);border:1px solid #00D68F30;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-status-assigned {background:var(--amber-d,#FFB83015);color:var(--amber,#FFB830);border:1px solid #FFB83030;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-status-order    {background:var(--blue-d,#4D9EFF15);color:var(--blue,#4D9EFF);border:1px solid var(--blue-g,#4D9EFF30);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-status-low      {background:var(--red-d,#FF456015);color:var(--red,#FF4560);border:1px solid #FF456030;font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+.inv-status-sold     {background:var(--card2);color:var(--text3);border:1px solid var(--border2);font-size:9px;padding:2px 7px;border-radius:4px;font-weight:600;}
+
+/* Life bar inline */
+.life-bar-inline{display:inline-flex;align-items:center;gap:6px;min-width:130px;}
+.lbi-track{height:5px;background:var(--border2);border-radius:3px;width:80px;overflow:hidden;}
+.lbi-fill{height:100%;border-radius:3px;}
+.lbi-fill.ok   {background:var(--green,#00D68F);}
+.lbi-fill.warn {background:var(--amber,#FFB830);}
+.lbi-fill.crit {background:var(--red,#FF4560);}
+.lbi-pct{font-size:10px;font-weight:600;white-space:nowrap;}
+.lbi-pct.ok   {color:var(--green,#00D68F);}
+.lbi-pct.warn {color:var(--amber,#FFB830);}
+.lbi-pct.crit {color:var(--red,#FF4560);}
+
+/* LLP card */
+.llp-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.llp-card.crit{border-left:4px solid var(--red,#FF4560);}
+.llp-card.warn{border-left:4px solid var(--amber,#FFB830);}
+.llp-card.ok  {border-left:4px solid var(--green,#00D68F);}
+.llp-card-hdr {display:flex;align-items:flex-start;gap:12px;padding:13px 15px;}
+.llp-card-body{padding:0 15px 13px;}
+.llp-life-row {background:var(--card2);border:1px solid var(--border2);border-radius:7px;padding:10px 12px;margin-bottom:8px;}
+
+/* PO card */
+.po-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--card-shadow,0 1px 3px rgba(0,0,0,.06));}
+.po-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.po-dot.pending {background:var(--amber,#FFB830);}
+.po-dot.ordered {background:var(--blue,#4D9EFF);}
+.po-dot.received{background:var(--green,#00D68F);}
+.po-info{flex:1;}
+.po-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;}
+.po-meta{font-size:10px;color:var(--text3);line-height:1.6;}
+.po-eta{flex-shrink:0;text-align:right;}
+.po-eta-val{font-size:15px;font-weight:800;color:var(--blue,#4D9EFF);}
+.po-eta-lbl{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;}
+
+/* WO parts check */
+.wo-parts-check{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.wpc-hdr{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border);}
+.wpc-status-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.wpc-status-dot.go  {background:var(--green-d,#00D68F15);border:2px solid #00D68F30;}
+.wpc-status-dot.warn{background:var(--amber-d,#FFB83015);border:2px solid #FFB83030;}
+.wpc-status-dot.stop{background:var(--red-d,#FF456015);border:2px solid #FF456030;}
+.wpc-row{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);font-size:11px;}
+.wpc-row:last-child{border-bottom:none;}
+@keyframes slideInRight { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 </style>
 </head>
 <body>
@@ -2962,6 +3029,15 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
       <div class="nav-icon">✈️</div><div class="nav-label">Aircraft In-Shop</div>
     </div>
 
+    <div class="sb-section">Parts & Stock</div>
+    <div class="nav-item" onclick="t2Nav('inventory', this)" id="t2-inv-nav">
+      <div class="nav-icon">📦</div><div class="nav-label">Inventory</div>
+      <div class="nav-badge" id="inv-alert-badge" style="background:var(--red)">3</div>
+    </div>
+    <div class="nav-item" onclick="t2Nav('purchasing', this)">
+      <div class="nav-icon">🛒</div><div class="nav-label">Purchasing</div>
+    </div>
+
     <div class="sb-section">Records</div>
     <div class="nav-item" onclick="t2Nav('servicedocs', this)">
       <div class="nav-icon">📁</div><div class="nav-label">Service Docs</div>
@@ -3321,6 +3397,198 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
       </div>
     </div>
 
+
+    <!-- ════════════════════════════════════════
+         T2 PAGE: INVENTORY
+    ════════════════════════════════════════ -->
+    <div class="page" id="t2-page-inventory">
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Inventory</div>
+          <div class="page-sub">Parts stock, life-limited tracking, and work order availability</div>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-secondary" onclick="openModal('modalBatchRecall')">⛔ Batch Recall</button>
+          <button class="btn btn-secondary" onclick="openModal('modalAuditLog')">📋 Audit Log</button>
+          <button class="btn btn-primary" onclick="openModal('modalAddPart')">+ Add Part</button>
+        </div>
+      </div>
+
+      <!-- Critical alerts -->
+      <div id="inv-critical-alerts"></div>
+
+      <!-- Stats -->
+      <div class="stat-grid col4 stagger" style="margin-bottom:16px" id="inv-stats"></div>
+
+      <!-- Tabs -->
+      <div class="req-filter-row" style="margin-bottom:14px;border-bottom:2px solid var(--border);padding-bottom:0">
+        <button class="filter-tab active" id="invtab-all"       onclick="switchInvTab('all',this)">All Parts</button>
+        <button class="filter-tab" id="invtab-llp"              onclick="switchInvTab('llp',this)">🚨 Life-Limited</button>
+        <button class="filter-tab" id="invtab-rotable"          onclick="switchInvTab('rotable',this)">🔄 Rotable</button>
+        <button class="filter-tab" id="invtab-expendable"       onclick="switchInvTab('expendable',this)">📦 Expendable</button>
+        <button class="filter-tab" id="invtab-consumable"       onclick="switchInvTab('consumable',this)">🧴 Consumable</button>
+        <button class="filter-tab" id="invtab-quarantine"       onclick="switchInvTab('quarantine',this)">⛔ Quarantine</button>
+      </div>
+
+      <!-- All parts table -->
+      <div id="inv-panel-all">
+        <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+          <div style="position:relative;flex:1;min-width:200px">
+            <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:13px">🔍</span>
+            <input id="inv-search" class="form-input" style="padding-left:32px;font-size:12px" placeholder="Search part #, description, serial, lot..." oninput="filterInventory()">
+          </div>
+          <select class="form-input form-select" style="max-width:150px;font-size:12px" id="inv-filter-type" onchange="filterInventory()">
+            <option value="">All Types</option>
+            <option value="llp">Life-Limited</option>
+            <option value="rotable">Rotable</option>
+            <option value="expendable">Expendable</option>
+            <option value="consumable">Consumable</option>
+          </select>
+          <select class="form-input form-select" style="max-width:150px;font-size:12px" id="inv-filter-cond" onchange="filterInventory()">
+            <option value="">All Conditions</option>
+            <option value="New">New</option>
+            <option value="Serviceable">Serviceable</option>
+            <option value="Overhauled">Overhauled</option>
+            <option value="As Removed">As Removed</option>
+            <option value="Quarantined">Quarantined</option>
+          </select>
+          <select class="form-input form-select" style="max-width:140px;font-size:12px" id="inv-filter-status" onchange="filterInventory()">
+            <option value="">All Statuses</option>
+            <option value="In Stock">In Stock</option>
+            <option value="Assigned">Assigned</option>
+            <option value="On Order">On Order</option>
+            <option value="Low Stock">Low Stock</option>
+          </select>
+        </div>
+        <div class="card no-hover" style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse" id="inv-table">
+            <thead>
+              <tr style="background:var(--card2)">
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap">Part #</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border)">Description</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap">Class</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap">S/N · Lot #</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border)">Manufacturer</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border)">Condition</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border)">Status</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:right;border-bottom:1px solid var(--border)">Qty</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap;min-width:130px">Life / Shelf</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:left;border-bottom:1px solid var(--border)">Bin</th>
+                <th style="padding:9px 12px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;text-align:center;border-bottom:1px solid var(--border)">8130-3</th>
+                <th style="border-bottom:1px solid var(--border)"></th>
+              </tr>
+            </thead>
+            <tbody id="inv-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- LLP panel -->
+      <div id="inv-panel-llp" style="display:none">
+        <div style="background:var(--red-d,#FF456015);border:1px solid #FF456030;border-radius:8px;padding:11px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:flex-start">
+          <span style="font-size:17px">🚨</span>
+          <div style="font-size:12px;color:var(--red,#FF4560)">
+            <strong>Life-Limited Parts require back-to-birth traceability per 14 CFR 43.10.</strong>
+            Parts at or beyond life limit must be scrapped immediately — no exceptions, no extensions.
+            Every removal from aircraft must update TSN/CSN here.
+          </div>
+        </div>
+        <div id="llp-cards-container"></div>
+      </div>
+
+      <!-- Rotable panel -->
+      <div id="inv-panel-rotable" style="display:none">
+        <div id="rotable-table-container"></div>
+      </div>
+
+      <!-- Expendable panel -->
+      <div id="inv-panel-expendable" style="display:none">
+        <div style="background:var(--blue-d,#4D9EFF15);border:1px solid var(--blue-g,#4D9EFF30);border-radius:8px;padding:11px 14px;margin-bottom:12px;display:flex;gap:10px">
+          <span style="font-size:17px">ℹ️</span>
+          <div style="font-size:12px;color:var(--blue,#4D9EFF)">Expendable parts are tracked by <strong>lot/batch number</strong> and expiry date — not individual serial numbers. Use the Batch Recall tool to quarantine an entire lot instantly.</div>
+        </div>
+        <div id="expendable-table-container"></div>
+      </div>
+
+      <!-- Consumable panel -->
+      <div id="inv-panel-consumable" style="display:none">
+        <div id="consumable-table-container"></div>
+      </div>
+
+      <!-- Quarantine panel -->
+      <div id="inv-panel-quarantine" style="display:none">
+        <div style="background:var(--red-d,#FF456015);border:1px solid #FF456030;border-radius:8px;padding:11px 14px;margin-bottom:12px;display:flex;gap:10px">
+          <span style="font-size:17px">⛔</span>
+          <div style="font-size:12px;color:var(--red,#FF4560)">
+            <strong>Quarantined parts cannot be installed on any aircraft.</strong>
+            They must be physically segregated from serviceable stock and clearly marked. Disposition required before any return to service.
+          </div>
+        </div>
+        <div id="quarantine-table-container"></div>
+        <div style="margin-top:16px">
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px">⚡ Batch Recall Tool</div>
+          <div class="card no-hover" style="padding:14px">
+            <div style="font-size:12px;color:var(--text2);margin-bottom:10px">Enter a lot/batch number to immediately quarantine all matching parts. This action is logged and triggers notifications to any open work orders using that batch.</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <input class="form-input" id="batch-recall-input" placeholder="Enter Lot # (e.g. LOT-2024-0213)" style="max-width:320px;font-size:12px">
+              <button class="btn btn-primary" style="background:var(--red,#FF4560)" onclick="triggerBatchRecall()">⛔ Quarantine Entire Lot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         T2 PAGE: PURCHASING
+    ════════════════════════════════════════ -->
+    <div class="page" id="t2-page-purchasing">
+      <div class="page-hdr">
+        <div>
+          <div class="page-title">Purchasing</div>
+          <div class="page-sub">Purchase orders, vendor management, and parts receiving</div>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary" onclick="openModal('modalNewPO')">+ New Purchase Order</button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stat-grid col4 stagger" style="margin-bottom:16px">
+        <div class="stat-card c-blue">
+          <div class="stat-icon">🛒</div>
+          <div class="stat-info"><div class="stat-val">3</div><div class="stat-label">Open POs</div></div>
+        </div>
+        <div class="stat-card c-amber">
+          <div class="stat-icon">⏱</div>
+          <div class="stat-info"><div class="stat-val">2</div><div class="stat-label">Awaiting Delivery</div></div>
+        </div>
+        <div class="stat-card c-green">
+          <div class="stat-icon">📦</div>
+          <div class="stat-info"><div class="stat-val">1</div><div class="stat-label">Ready to Receive</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+          <div class="stat-info"><div class="stat-val">$4.2K</div><div class="stat-label">Open Order Value</div></div>
+        </div>
+      </div>
+
+      <!-- Low stock alerts triggering POs -->
+      <div style="background:var(--amber-d,#FFB83015);border:1px solid #FFB83030;border-radius:8px;padding:11px 14px;margin-bottom:14px;display:flex;gap:10px;align-items:flex-start">
+        <span style="font-size:17px">⚠️</span>
+        <div style="flex:1">
+          <div style="font-size:12px;font-weight:700;color:var(--amber,#FFB830)">2 Parts Below Reorder Point — Action Required</div>
+          <div style="font-size:11px;color:var(--amber,#FFB830);margin-top:3px">
+            CH-48110-1-39 Oil Filters: 86 in stock, min 100 &nbsp;·&nbsp;
+            MIL-PRF-23699-26 Turbine Oil: 7 in stock, min 12
+          </div>
+        </div>
+        <button class="btn btn-primary" style="background:var(--amber,#FFB830);flex-shrink:0;font-size:11px" onclick="openModal('modalNewPO')">Auto-Generate POs</button>
+      </div>
+
+      <!-- PO List -->
+      <div id="po-list"></div>
+    </div>
+
   </div><!-- end dash-main t2 -->
 </div><!-- end view-t2 -->
 
@@ -3339,7 +3607,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   ║  5. Enable Firestore Database                    ║
   ╚══════════════════════════════════════════════════╝
 -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
+<script type="module">
 import { initializeApp }                                     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
          sendPasswordResetEmail, signOut, onAuthStateChanged,
@@ -3349,10 +3617,10 @@ import { getFirestore, doc, setDoc, getDoc, addDoc, updateDoc, deleteDoc,
          collection, query, where, orderBy, limit, onSnapshot,
          serverTimestamp, getDocs, writeBatch, increment, arrayUnion }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL, deleteObject }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
-import { getMessaging, getToken, onMessage }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js";
+// Storage + Messaging loaded lazily after Firebase is configured
+// to prevent script errors when Firebase is not yet set up
+let storageRef, uploadBytes, getDownloadURL, deleteObject;
+let getMessaging, getToken, onMessage;
 
 // ══════════════════════════════════════════════
 // ▼▼▼  PASTE YOUR FIREBASE CONFIG HERE  ▼▼▼
@@ -3377,17 +3645,26 @@ function initFirebase(config) {
     app       = initializeApp(config);
     auth      = getAuth(app);
     db        = getFirestore(app);
-    storage   = getStorage(app);
-    try { messaging = getMessaging(app); } catch(e) {}
+    // Lazily load storage + messaging after Firebase is confirmed working
+    import("https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js").then(m => {
+      storage = m.getStorage(app);
+      storageRef = m.ref; uploadBytes = m.uploadBytes;
+      getDownloadURL = m.getDownloadURL; deleteObject = m.deleteObject;
+    }).catch(() => {});
+    import("https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js").then(m => {
+      try {
+        const msg = m.getMessaging(app);
+        getToken = m.getToken; onMessage = m.onMessage;
+        if (Notification.permission === 'granted' && window._AW_VAPID_KEY) {
+          m.getToken(msg, { vapidKey: window._AW_VAPID_KEY })
+            .then(token => { if (token) window._fcmToken = token; })
+            .catch(() => {});
+        }
+      } catch(e) {}
+    }).catch(() => {});
     _firebaseReady = true;
-    console.log('✅ Firebase initialized — all services ready');
+    console.log('✅ Firebase initialized — Auth + Firestore ready');
     updateFirebaseStatusUI(true);
-    // Register FCM token for push notifications
-    if (messaging && Notification.permission === 'granted') {
-      getToken(messaging, { vapidKey: window._AW_VAPID_KEY })
-        .then(token => { if (token) window._fcmToken = token; })
-        .catch(() => {});
-    }
     return true;
   } catch(e) {
     console.warn('⚠️ Firebase init failed:', e.message);
@@ -3410,16 +3687,13 @@ function initFirebase(config) {
 })();
 
 try {
-  if (firebaseConfig.apiKey !== 'YOUR_API_KEY') {
-    app  = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db   = getFirestore(app);
-    _firebaseReady = true;
+  if (firebaseConfig.apiKey && firebaseConfig.apiKey !== 'YOUR_API_KEY') {
+    initFirebase(firebaseConfig);
   } else {
-    console.warn('⚠️ Firebase not configured — using sim mode');
+    console.log('ℹ️ Firebase not configured — running in sim mode. Use test credentials to explore.');
   }
 } catch(e) {
-  console.warn('⚠️ Firebase init error — using sim mode');
+  console.warn('⚠️ Firebase init error:', e.message);
 }
 
 // ── Auth state observer ──────────────────────
@@ -7027,3 +7301,413 @@ window.exportUserData = function() {
 // ── Add Profile to T1 sidebar nav ────────────────────────────
 setTimeout(() => {
   const sbBottom = document.querySelector('#sb-t
+  const sbBottom = document.querySelector('#sb-t1');
+  if (sbBottom) {
+    const profBtn = document.createElement('div');
+    profBtn.className = 'nav-item';
+    profBtn.innerHTML = '<div class="nav-icon">👤</div><div class="nav-label">Profile</div>';
+    profBtn.onclick = () => t1Nav('profile', profBtn);
+    sbBottom.insertBefore(profBtn, sbBottom.firstChild);
+  }
+  const lbBtn = document.createElement('div');
+  lbBtn.id = 'lb-nav-item';
+  lbBtn.className = 'nav-item';
+  lbBtn.innerHTML = '<div class="nav-icon">📔</div><div class="nav-label">Digital Logbook</div>';
+  lbBtn.onclick = () => t1Nav('logbook', lbBtn);
+  const docsNav = document.querySelector('[onclick*="t1Nav(\'documents\'"]');
+  if (docsNav) docsNav.parentNode.insertBefore(lbBtn, docsNav.nextSibling);
+}, 500);
+
+</script>
+</body>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// MRO INVENTORY SYSTEM — Parts DB, Rendering, WO Check
+// ═══════════════════════════════════════════════════════════════
+const MRO_PARTS_DB = [
+  {pn:'LW-16702',desc:'Crankshaft Main Bearing',cls:'llp',sn:'YD-71053',lot:'—',mfg:'Tempest',vendor:'Aircraft Spruce',cond:'Serviceable',status:'In Stock',qty:1,min:1,tsn:2553,csn:2100,life_hrs:2600,life_cyc:3000,expiry:null,bin:'Shop-Bin-7',tag:true,unitCost:1240,notes:'Removed from N847GR Annual 2025'},
+  {pn:'SB-1250-A',desc:'Turbine Blade Assembly (Stage 1)',cls:'llp',sn:'TB-44821',lot:'—',mfg:'Williams International',vendor:'Williams Parts',cond:'Serviceable',status:'In Stock',qty:1,min:1,tsn:1840,csn:1440,life_hrs:3600,life_cyc:5000,expiry:null,bin:'LLP-Safe-1',tag:true,unitCost:18500,notes:'Stage 1 — back-to-birth trace docs on file'},
+  {pn:'RA-442CL',desc:'Alternator 14V 70A',cls:'rotable',sn:'CZ-12195',lot:'—',mfg:'Honeywell',vendor:'Aviall',cond:'Serviceable',status:'Assigned',qty:1,min:1,tsn:1240,tso:440,oh_limit:2000,expiry:'2026-05-30',bin:'Hangar-A-S3',tag:true,unitCost:2800},
+  {pn:'KI-256',desc:'Flight Director Indicator',cls:'rotable',sn:'EK-87382',lot:'—',mfg:'Bendix/King',vendor:'Avionics Plus',cond:'Serviceable',status:'In Stock',qty:1,min:1,tsn:3820,tso:1820,oh_limit:4000,expiry:null,bin:'Avionics-B2',tag:true,unitCost:4200},
+  {pn:'AV-80R',desc:'Vacuum Pump',cls:'rotable',sn:'RU-55585',lot:'—',mfg:'Hartzell',vendor:'Aircraft Spruce',cond:'Serviceable',status:'In Stock',qty:1,min:1,tsn:890,tso:890,oh_limit:1000,expiry:null,bin:'Bin-C4',tag:true,unitCost:680},
+  {pn:'DC-4',desc:'Ignition Harness',cls:'rotable',sn:'MB-60669',lot:'—',mfg:'Garmin',vendor:'Garmin Aviation',cond:'Quarantined',status:'Quarantined',qty:1,min:1,tsn:null,tso:null,oh_limit:null,expiry:null,bin:'QUARANTINE',tag:false,unitCost:1100,quarantine_reason:'Suspected AD non-compliance',quarantine_date:'2026-03-15'},
+  {pn:'CH-48110-1-39',desc:'Oil Filter Element',cls:'expendable',sn:'—',lot:'LOT-2025-0519',mfg:'Hartzell',vendor:'Aircraft Spruce',cond:'New',status:'In Stock',qty:86,min:100,expiry:'2028-05-20',bin:'A-Row-12',tag:true,unitCost:14.99},
+  {pn:'REM-38S-38',desc:'Spark Plug — Massive Electrode',cls:'expendable',sn:'—',lot:'LOT-2024-0213',mfg:'Tempest',vendor:'Tempest Plus',cond:'New',status:'In Stock',qty:40,min:24,expiry:'2026-06-13',bin:'B-Row-3',tag:false,unitCost:12.50},
+  {pn:'AN960-516-7',desc:'Flat Washer 5/16',cls:'expendable',sn:'—',lot:'LOT-2018-0709',mfg:'Parker Hannifin',vendor:'Aircraft Spruce',cond:'New',status:'In Stock',qty:73,min:50,expiry:null,bin:'C-Row-8',tag:false,unitCost:0.35},
+  {pn:'MS20365-1032A-6',desc:'AN Castle Nut — Std',cls:'expendable',sn:'—',lot:'LOT-2022-0313',mfg:'McCauley',vendor:'Aircraft Spruce',cond:'New',status:'In Stock',qty:97,min:50,expiry:null,bin:'D-Row-1',tag:false,unitCost:0.28},
+  {pn:'AER-W80-12QT',desc:'AeroShell W80 Plus Oil (qt)',cls:'consumable',sn:'—',lot:'—',mfg:'Shell',vendor:'Aircraft Spruce',cond:'New',status:'In Stock',qty:18,min:24,expiry:'2028-01-01',bin:'C-Oil-1',tag:false,unitCost:11.50},
+  {pn:'MIL-PRF-23699-26',desc:'Turbine Engine Oil (qt)',cls:'consumable',sn:'—',lot:'—',mfg:'Parker Hannifin',vendor:'Aviall',cond:'New',status:'In Stock',qty:7,min:12,expiry:'2027-06-02',bin:'C-Oil-2',tag:false,unitCost:28.00},
+];
+
+const PO_DB_MRO = [
+  {id:'PO-2026-0041',parts:'CH-48110-1-39 Oil Filters x50',pn:'CH-48110-1-39',qty:50,vendor:'Aircraft Spruce',ordered:'Mar 15, 2026',etaLabel:'Mar 25',daysLeft:3,status:'ordered',total:749.50,linked_wo:'WO-2026-0041',triggered:'Low stock (86/min 100)'},
+  {id:'PO-2026-0040',parts:'MIL-PRF-23699-26 Turbine Oil x24 qts',pn:'MIL-PRF-23699-26',qty:24,vendor:'Aviall',ordered:'Mar 18, 2026',etaLabel:'TBD',daysLeft:null,status:'pending',total:672.00,linked_wo:null,triggered:'Low stock (7/min 12)'},
+  {id:'PO-2026-0035',parts:'REM-38S-38 Spark Plugs x48',pn:'REM-38S-38',qty:48,vendor:'Tempest Plus',ordered:'Mar 1, 2026',etaLabel:'Received',daysLeft:null,status:'received',total:600.00,linked_wo:null,triggered:'Manual order'},
+];
+
+function _lifePct(p) {
+  if (p.cls === 'llp' && p.tsn && p.life_hrs) return Math.round(p.tsn / p.life_hrs * 100);
+  if (p.cls === 'rotable' && p.tso && p.oh_limit) return Math.round(p.tso / p.oh_limit * 100);
+  return null;
+}
+function _lcls(pct) { return pct >= 90 ? 'crit' : pct >= 70 ? 'warn' : 'ok'; }
+function _clr(lcls) { return lcls === 'crit' ? 'var(--red,#FF4560)' : lcls === 'warn' ? 'var(--amber,#FFB830)' : 'var(--green,#00D68F)'; }
+
+function _lifeBar(pct) {
+  if (pct === null) return '<span style="font-size:10px;color:var(--text3)">N/A</span>';
+  const lc = _lcls(pct), rem = 100-pct;
+  return `<div style="display:inline-flex;align-items:center;gap:5px;min-width:120px">
+    <div style="height:5px;background:var(--border2);border-radius:3px;width:70px;overflow:hidden">
+      <div style="height:100%;width:${pct}%;background:${_clr(lc)};border-radius:3px"></div>
+    </div>
+    <span style="font-size:10px;font-weight:600;color:${_clr(lc)};white-space:nowrap">${rem}% left</span>
+  </div>`;
+}
+function _expBadge(exp) {
+  if (!exp) return '<span style="font-size:10px;color:var(--text3)">—</span>';
+  const days = Math.round((new Date(exp) - new Date()) / 86400000);
+  if (days < 0)  return '<span class="inv-status-low">EXPIRED</span>';
+  if (days < 90) return `<span class="inv-status-assigned">${Math.round(days/30)}mo</span>`;
+  return `<span style="font-size:10px;color:var(--text3)">${Math.round(days/30)}mo</span>`;
+}
+const _TIER = {llp:'<span class="inv-tier-llp">🚨 LLP</span>',rotable:'<span class="inv-tier-rotable">🔄 Rotable</span>',expendable:'<span class="inv-tier-expendable">📦 Expendable</span>',consumable:'<span class="inv-tier-consumable">🧴 Consumable</span>'};
+const _COND = {'New':'<span class="inv-cond-new">New</span>','Serviceable':'<span class="inv-cond-svc">Serviceable</span>','Overhauled':'<span class="inv-cond-oh">Overhauled</span>','As Removed':'<span class="inv-cond-ar">As Removed</span>','Quarantined':'<span class="inv-cond-quar">Quarantined</span>','Repairable':'<span class="inv-cond-ar">Repairable</span>'};
+
+function _statusBadge(p) {
+  if (p.status==='Quarantined') return '<span class="inv-cond-quar">Quarantined</span>';
+  if (p.status==='Assigned')    return '<span class="inv-status-assigned">Assigned</span>';
+  if (p.qty <= (p.min||0))      return '<span class="inv-status-low">Low Stock ⚠</span>';
+  return '<span class="inv-status-stock">In Stock</span>';
+}
+
+function renderInvTable(clsFilter) {
+  const tb = document.getElementById('inv-tbody'); if (!tb) return;
+  const q  = (document.getElementById('inv-search')||{}).value||'';
+  const tf = (document.getElementById('inv-filter-type')||{}).value||'';
+  const cf = (document.getElementById('inv-filter-cond')||{}).value||'';
+  let parts = MRO_PARTS_DB;
+  if (clsFilter && clsFilter !== 'all') parts = parts.filter(p => p.cls === clsFilter);
+  if (tf) parts = parts.filter(p => p.cls === tf);
+  if (cf) parts = parts.filter(p => p.cond === cf);
+  if (q)  parts = parts.filter(p => [p.pn,p.desc,p.sn,p.lot,p.mfg,p.bin].join(' ').toLowerCase().includes(q.toLowerCase()));
+  const TD = 'style="padding:8px 11px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2)"';
+  tb.innerHTML = parts.map(p => {
+    const pct = _lifePct(p);
+    const snlot = p.sn!=='—' ? `<span style="font-family:monospace;font-size:10px;color:var(--blue,#4D9EFF)">${p.sn}</span>` :
+                  p.lot!=='—' ? `<span style="font-family:monospace;font-size:10px;color:var(--text3)">${p.lot}</span>` : '—';
+    return `<tr>
+      <td ${TD}><span style="font-family:monospace;font-weight:700;color:var(--blue,#4D9EFF);cursor:pointer" onclick="showInvPartDetail('${p.pn}')">${p.pn}</span></td>
+      <td ${TD}>${p.desc}</td>
+      <td ${TD}>${_TIER[p.cls]||''}</td>
+      <td ${TD}>${snlot}</td>
+      <td ${TD} style="padding:8px 11px;border-bottom:1px solid var(--border);font-size:11px;color:var(--text2)">${p.mfg}</td>
+      <td ${TD}>${_COND[p.cond]||p.cond}</td>
+      <td ${TD}>${_statusBadge(p)}</td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border);text-align:right;font-size:12px;font-weight:700;${p.qty<=(p.min||0)?'color:var(--red,#FF4560)':''}">${p.qty}</td>
+      <td ${TD}>${pct!==null?_lifeBar(pct):_expBadge(p.expiry)}</td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border);font-size:10px;font-family:monospace;color:var(--text3)">${p.bin}</td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border);text-align:center">${p.tag?'<span style="color:var(--green,#00D68F)">✓</span>':'<span style="color:var(--text3)">—</span>'}</td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border)"><button style="font-size:10px;padding:3px 8px;border-radius:5px;background:var(--card2);border:1px solid var(--border2);color:var(--text2);cursor:pointer" onclick="showInvPartDetail('${p.pn}')">View</button></td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="12" style="text-align:center;padding:30px;color:var(--text3);font-size:12px">No parts match filters</td></tr>`;
+}
+
+function renderInvStats() {
+  const el = document.getElementById('inv-stats'); if (!el) return;
+  const total = MRO_PARTS_DB.length;
+  const inStock = MRO_PARTS_DB.filter(p=>p.status==='In Stock').length;
+  const crit = MRO_PARTS_DB.filter(p=>{ const pct=_lifePct(p); return (pct&&pct>=90)||p.qty<=(p.min||0)||p.status==='Quarantined'; }).length;
+  const val = MRO_PARTS_DB.reduce((a,p)=>a+(p.qty*p.unitCost),0);
+  el.innerHTML = `
+    <div class="stat-card c-blue"><div class="stat-icon">📦</div><div class="stat-info"><div class="stat-val">${total}</div><div class="stat-label">Total Parts</div></div></div>
+    <div class="stat-card c-green"><div class="stat-icon">✅</div><div class="stat-info"><div class="stat-val">${inStock}</div><div class="stat-label">In Stock</div></div></div>
+    <div class="stat-card" style="border-left:3px solid var(--red,#FF4560)"><div class="stat-icon">🚨</div><div class="stat-info"><div class="stat-val" style="color:var(--red,#FF4560)">${crit}</div><div class="stat-label">Critical Alerts</div></div></div>
+    <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-info"><div class="stat-val">$${(val/1000).toFixed(0)}K</div><div class="stat-label">Total Value</div></div></div>`;
+}
+
+function renderInvAlerts() {
+  const el = document.getElementById('inv-critical-alerts'); if (!el) return;
+  const crits=[], warns=[];
+  MRO_PARTS_DB.forEach(p => {
+    const pct = _lifePct(p);
+    if (pct && pct>=90) crits.push(`<strong>${p.pn}</strong> — ${p.desc}: ${100-pct}% life remaining`);
+    if (p.status==='Quarantined') crits.push(`<strong>${p.pn}</strong> — QUARANTINED: ${p.quarantine_reason||''}`);
+    if (p.qty<=(p.min||0) && p.status!=='Quarantined') warns.push(`<strong>${p.pn}</strong> — ${p.qty} in stock, min ${p.min}`);
+    if (p.expiry) { const d=Math.round((new Date(p.expiry)-new Date())/86400000); if(d<90&&d>=0) warns.push(`<strong>${p.pn}</strong> — expires in ${Math.round(d/30)} months`); }
+  });
+  el.innerHTML = (crits.length?`<div style="background:var(--red-d,#FF456015);border:1px solid #FF456030;border-radius:8px;padding:10px 13px;margin-bottom:8px;display:flex;gap:10px"><span style="font-size:16px;flex-shrink:0">🚨</span><div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--red,#FF4560);margin-bottom:3px">${crits.length} Critical</div>${crits.map(c=>`<div style="font-size:11px;color:var(--red,#FF4560);margin-bottom:1px">• ${c}</div>`).join('')}</div></div>`:'') +
+    (warns.length?`<div style="background:var(--amber-d,#FFB83015);border:1px solid #FFB83030;border-radius:8px;padding:10px 13px;margin-bottom:8px;display:flex;gap:10px"><span style="font-size:16px;flex-shrink:0">⚠️</span><div style="flex:1"><div style="font-size:12px;font-weight:700;color:var(--amber,#FFB830);margin-bottom:3px">${warns.length} Warning${warns.length>1?'s':''}</div>${warns.map(w=>`<div style="font-size:11px;color:var(--amber,#FFB830);margin-bottom:1px">• ${w}</div>`).join('')}</div></div>`:'');
+}
+
+function renderLLPCards() {
+  const el = document.getElementById('llp-cards-container'); if (!el) return;
+  el.innerHTML = MRO_PARTS_DB.filter(p=>p.cls==='llp').map(p => {
+    const pct = _lifePct(p)||0, lc = _lcls(pct), rem = p.life_hrs - p.tsn;
+    return `<div class="llp-card ${lc}" style="margin-bottom:10px">
+      <div style="display:flex;gap:12px;padding:12px 14px">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+            <span style="font-family:monospace;font-size:14px;font-weight:800;color:var(--text)">${p.pn}</span>
+            <span class="inv-tier-llp">🚨 LLP</span>
+            ${pct>=90?'<span style="background:var(--red-d,#FF456015);color:var(--red,#FF4560);border:1px solid #FF456030;font-size:9px;padding:1px 7px;border-radius:4px;font-weight:700">CRITICAL</span>':''}
+          </div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:8px">${p.desc} · S/N: ${p.sn} · ${p.mfg}</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px">
+            ${[['TSN',p.tsn+' hrs'],['Limit',p.life_hrs+' hrs'],['Remaining',rem+' hrs'],['CSN / Limit',p.csn+'/'+p.life_cyc]].map(([l,v])=>`<div style="background:var(--card2);border:1px solid var(--border);border-radius:5px;padding:7px 9px"><div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px">${l}</div><div style="font-size:13px;font-weight:700;color:var(--text)">${v}</div></div>`).join('')}
+          </div>
+          <div style="height:7px;background:var(--border2);border-radius:4px;overflow:hidden;margin-bottom:4px">
+            <div style="height:100%;width:${pct}%;background:${_clr(lc)};border-radius:4px"></div>
+          </div>
+          <div style="font-size:10px;color:var(--text3)">${pct}% used · 📍 ${p.bin} · ${p.tag?'✅ 8130-3':'⚠ No tag'}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
+          <button style="font-size:10px;padding:4px 10px;border-radius:6px;background:var(--card2);border:1px solid var(--border2);color:var(--text2);cursor:pointer" onclick="showInvPartDetail('${p.pn}')">View Full Record</button>
+          ${pct>=90?`<button style="font-size:10px;padding:4px 10px;border-radius:6px;background:var(--red-d,#FF456015);border:1px solid #FF456030;color:var(--red,#FF4560);cursor:pointer" onclick="showToast('Retirement scheduled','info')">Schedule Retirement</button>`:`<button style="font-size:10px;padding:4px 10px;border-radius:6px;background:var(--card2);border:1px solid var(--border2);color:var(--text2);cursor:pointer" onclick="showToast('Hours updated','success')">Update Hours</button>`}
+        </div>
+      </div>
+    </div>`;
+  }).join('') || '<div style="text-align:center;padding:30px;color:var(--text3);font-size:12px">No life-limited parts in inventory</div>';
+}
+
+function renderPOs() {
+  const el = document.getElementById('po-list'); if (!el) return;
+  const dc = {pending:'var(--amber,#FFB830)',ordered:'var(--blue,#4D9EFF)',received:'var(--green,#00D68F)'};
+  const sl = {pending:'Awaiting Vendor',ordered:'Ordered — In Transit',received:'Received & Stocked'};
+  el.innerHTML = PO_DB_MRO.map(po => `
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:9px;padding:13px;margin-bottom:8px;display:flex;gap:11px;align-items:flex-start">
+      <div style="width:10px;height:10px;border-radius:50%;background:${dc[po.status]};flex-shrink:0;margin-top:4px"></div>
+      <div style="flex:1">
+        <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px">${po.id} — ${po.parts}</div>
+        <div style="font-size:10px;color:var(--text3);line-height:1.6">Vendor: ${po.vendor} · Ordered: ${po.ordered}${po.linked_wo?` · WO: ${po.linked_wo}`:''}<br>Triggered: ${po.triggered}</div>
+        <div style="display:flex;gap:5px;margin-top:5px;flex-wrap:wrap">
+          <span style="background:${po.status==='received'?'var(--green-d,#00D68F15)':po.status==='ordered'?'var(--blue-d,#4D9EFF15)':'var(--amber-d,#FFB83015)'};color:${dc[po.status]};border:1px solid;font-size:9px;padding:1px 7px;border-radius:4px;font-weight:600">${sl[po.status]}</span>
+          <span style="font-size:9px;color:var(--text3);padding:1px 7px;background:var(--card2);border:1px solid var(--border2);border-radius:4px">$${po.total.toFixed(2)}</span>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em">ETA</div>
+        <div style="font-size:15px;font-weight:800;color:${dc[po.status]}">${po.etaLabel}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderQuarantineTable() {
+  const el = document.getElementById('quarantine-table-container'); if (!el) return;
+  const parts = MRO_PARTS_DB.filter(p=>p.status==='Quarantined'||p.cond==='Quarantined');
+  if (!parts.length) { el.innerHTML='<div style="text-align:center;padding:24px;color:var(--text3);font-size:12px">No quarantined parts ✅</div>'; return; }
+  const TD='style="padding:8px 11px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2)"';
+  el.innerHTML=`<div class="card no-hover" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse">
+    <thead><tr style="background:var(--card2)">
+      <th style="padding:8px 11px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Part #</th>
+      <th style="padding:8px 11px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Description</th>
+      <th style="padding:8px 11px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">S/N</th>
+      <th style="padding:8px 11px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Reason</th>
+      <th style="padding:8px 11px;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--border)">Date</th>
+      <th style="padding:8px 11px;border-bottom:1px solid var(--border)"></th>
+    </tr></thead>
+    <tbody>${parts.map(p=>`<tr>
+      <td ${TD} style="padding:8px 11px;border-bottom:1px solid var(--border);font-family:monospace;font-size:11px;font-weight:700;color:var(--red,#FF4560)">${p.pn}</td>
+      <td ${TD}>${p.desc}</td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border);font-family:monospace;font-size:10px;color:var(--text3)">${p.sn}</td>
+      <td ${TD}><span class="inv-cond-quar">${p.quarantine_reason||'Pending'}</span></td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border);font-size:11px;color:var(--text3)">${p.quarantine_date||'—'}</td>
+      <td style="padding:8px 11px;border-bottom:1px solid var(--border);display:flex;gap:5px">
+        <button style="font-size:10px;padding:3px 8px;border-radius:5px;background:var(--green-d,#00D68F15);border:1px solid #00D68F30;color:var(--green,#00D68F);cursor:pointer" onclick="showToast('Returned to service','success')">Return to Service</button>
+        <button style="font-size:10px;padding:3px 8px;border-radius:5px;background:var(--red-d,#FF456015);border:1px solid #FF456030;color:var(--red,#FF4560);cursor:pointer" onclick="showToast('Part scrapped — logged','info')">Scrap</button>
+      </td>
+    </tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
+window.switchInvTab = function(tab, btn) {
+  ['all','llp','rotable','expendable','consumable','quarantine'].forEach(t => {
+    const p = document.getElementById('inv-panel-'+t);
+    if (p) p.style.display = t===tab?'block':'none';
+  });
+  document.querySelectorAll('[id^="invtab-"]').forEach(b=>b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  if (tab==='llp') renderLLPCards();
+  else if (tab==='quarantine') renderQuarantineTable();
+  else renderInvTable(tab === 'all' ? null : tab);
+};
+
+window.filterInventory = function() { renderInvTable(); };
+
+window.triggerBatchRecall = function() {
+  const lot = (document.getElementById('batch-recall-input')||{}).value;
+  if (!lot) { showToast('Enter a lot number','error'); return; }
+  const affected = MRO_PARTS_DB.filter(p=>p.lot===lot);
+  if (!affected.length) { showToast('No parts with lot '+lot,'error'); return; }
+  affected.forEach(p => { p.status='Quarantined'; p.cond='Quarantined'; p.quarantine_reason='Batch recall — Lot '+lot; p.quarantine_date=new Date().toISOString().split('T')[0]; });
+  renderInvTable(); renderInvAlerts(); renderInvStats(); renderQuarantineTable();
+  showToast(affected.length+' part(s) from '+lot+' quarantined','info');
+};
+
+window.showInvPartDetail = function(pn) {
+  const p = MRO_PARTS_DB.find(x=>x.pn===pn); if (!p) return;
+  const pct = _lifePct(p);
+  const el = document.getElementById('modal-part-detail-content');
+  if (!el) return;
+  el.innerHTML = `
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px">
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+          <span style="font-family:monospace;font-size:17px;font-weight:800;color:var(--text)">${p.pn}</span>
+          ${_TIER[p.cls]||''}
+        </div>
+        <div style="font-size:13px;color:var(--text2)">${p.desc}</div>
+      </div>
+      <button onclick="closeModal('modalPartDetail')" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--text3)">×</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+      ${[['Manufacturer',p.mfg],['Vendor',p.vendor],['Bin Location',p.bin],p.sn!=='—'?['Serial #',p.sn]:null,p.lot!=='—'?['Lot / Batch',p.lot]:null,p.expiry?['Expiry',p.expiry]:null].filter(Boolean).map(([l,v])=>`<div style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:9px 10px"><div style="font-size:9px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px">${l}</div><div style="font-size:12px;font-weight:600;color:var(--text)">${v}</div></div>`).join('')}
+    </div>
+    ${pct!==null?`<div style="background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:9px 11px;margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:6px"><span>Life Status</span><span style="font-weight:700;color:${_clr(_lcls(pct))}">${100-pct}% remaining</span></div>
+      <div style="height:7px;background:var(--border2);border-radius:4px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${_clr(_lcls(pct))};border-radius:4px"></div></div>
+    </div>`:''}
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn btn-secondary" onclick="closeModal('modalPartDetail')">Close</button>
+      <button class="btn btn-secondary" onclick="showToast('8130-3 tag printed','success')">Print 8130-3</button>
+      <button class="btn btn-primary" onclick="showToast('Part updated','success')">Edit Part</button>
+    </div>`;
+  openModal('modalPartDetail');
+};
+
+window.checkWOPartsAvailability = function(serviceType) {
+  const reqMap = {
+    '100-Hour Inspection':[{pn:'CH-48110-1-39',desc:'Oil Filter Element',qty:2},{pn:'REM-38S-38',desc:'Spark Plugs',qty:12},{pn:'AER-W80-12QT',desc:'Engine Oil',qty:8},{pn:'AN960-516-7',desc:'Flat Washers',qty:8}],
+    'Annual Inspection':[{pn:'CH-48110-1-39',desc:'Oil Filter Element',qty:2},{pn:'AER-W80-12QT',desc:'Engine Oil',qty:8},{pn:'REM-38S-38',desc:'Spark Plugs',qty:12}],
+    'Oil Change':[{pn:'CH-48110-1-39',desc:'Oil Filter Element',qty:1},{pn:'AER-W80-12QT',desc:'Engine Oil',qty:8}],
+  };
+  const required = reqMap[serviceType]||[];
+  const results = required.map(req => {
+    const part = MRO_PARTS_DB.find(p=>p.pn===req.pn);
+    if (!part) return {...req,have:0,status:'missing'};
+    const po = PO_DB_MRO.find(o=>o.pn===req.pn&&o.status==='ordered');
+    if (part.qty>=req.qty) return {...req,have:part.qty,status:'ok'};
+    if (po) return {...req,have:part.qty,status:'order',eta:po.etaLabel};
+    return {...req,have:part.qty,status:'low'};
+  });
+  return {results, canAccept:results.every(r=>r.status==='ok'||r.status==='order')};
+};
+
+window.selectPartClass = function(cls, el) {
+  document.querySelectorAll('[onclick*="selectPartClass"]').forEach(d=>{d.style.borderColor='var(--border)';d.style.background='transparent';});
+  el.style.borderColor='var(--orange,#E8521A)'; el.style.background='var(--orange-lt,#FEF0EA)';
+  document.getElementById('ap-llp-fields').style.display = cls==='llp'?'block':'none';
+};
+
+// Hook T2 Nav
+const _t2NavPre = window.t2Nav;
+window.t2Nav = function(page, el) {
+  _t2NavPre(page, el);
+  if (page === 'inventory')  { setTimeout(()=>{renderInvStats();renderInvAlerts();renderInvTable();},60); }
+  if (page === 'purchasing') { setTimeout(()=>renderPOs(),60); }
+};
+console.log('✅ MRO Inventory system loaded');
+</script>
+
+<!-- Part Detail Modal -->
+<div class="modal-bg hidden" id="modalPartDetail">
+  <div class="modal-sheet" style="max-width:580px">
+    <div class="modal-handle"></div>
+    <div id="modal-part-detail-content" style="padding:20px"></div>
+  </div>
+</div>
+
+<!-- Add Part Modal -->
+<div class="modal-bg hidden" id="modalAddPart">
+  <div class="modal-sheet" style="max-width:600px">
+    <div class="modal-handle"></div>
+    <div style="padding:0 20px 8px"><div class="modal-title">+ Add Part to Inventory</div><div class="modal-sub">Select part type — required fields adjust automatically</div></div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+        <div onclick="selectPartClass('llp',this)" style="border:2px solid var(--red-bd,#FECACA);background:var(--red-d,#FF456015);border-radius:8px;padding:10px;text-align:center;cursor:pointer">
+          <div style="font-size:18px;margin-bottom:3px">🚨</div><div style="font-size:11px;font-weight:700;color:var(--red,#FF4560)">Life-Limited</div><div style="font-size:9px;color:var(--text3);margin-top:2px">S/N + hours required</div>
+        </div>
+        <div onclick="selectPartClass('rotable',this)" style="border:2px solid var(--border);border-radius:8px;padding:10px;text-align:center;cursor:pointer">
+          <div style="font-size:18px;margin-bottom:3px">🔄</div><div style="font-size:11px;font-weight:700;color:var(--text)">Rotable</div><div style="font-size:9px;color:var(--text3);margin-top:2px">S/N tracked</div>
+        </div>
+        <div onclick="selectPartClass('expendable',this)" style="border:2px solid var(--border);border-radius:8px;padding:10px;text-align:center;cursor:pointer">
+          <div style="font-size:18px;margin-bottom:3px">📦</div><div style="font-size:11px;font-weight:700;color:var(--text)">Expendable</div><div style="font-size:9px;color:var(--text3);margin-top:2px">Lot/batch tracked</div>
+        </div>
+        <div onclick="selectPartClass('consumable',this)" style="border:2px solid var(--border);border-radius:8px;padding:10px;text-align:center;cursor:pointer">
+          <div style="font-size:18px;margin-bottom:3px">🧴</div><div style="font-size:11px;font-weight:700;color:var(--text)">Consumable</div><div style="font-size:9px;color:var(--text3);margin-top:2px">Qty + reorder</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div><label class="form-label">Part Number *</label><input class="form-input" placeholder="e.g. CH-48110-1-39"></div>
+        <div><label class="form-label">Description *</label><input class="form-input" placeholder="e.g. Oil Filter Element"></div>
+        <div><label class="form-label">Manufacturer *</label><input class="form-input" placeholder="e.g. Hartzell"></div>
+        <div><label class="form-label">Vendor</label><input class="form-input" placeholder="e.g. Aircraft Spruce"></div>
+        <div><label class="form-label">Serial Number</label><input class="form-input" placeholder="Required for LLP/Rotable"></div>
+        <div><label class="form-label">Lot / Batch Number</label><input class="form-input" placeholder="Required for Expendable"></div>
+        <div><label class="form-label">Condition</label><select class="form-input form-select"><option>New</option><option>Serviceable</option><option>Overhauled</option><option>As Removed</option></select></div>
+        <div><label class="form-label">Bin Location</label><input class="form-input" placeholder="e.g. A-Row-12"></div>
+        <div><label class="form-label">Quantity</label><input class="form-input" type="number" value="1"></div>
+        <div><label class="form-label">Min Stock / Reorder</label><input class="form-input" type="number" placeholder="100"></div>
+        <div><label class="form-label">Expiry Date</label><input class="form-input" type="date"></div>
+        <div><label class="form-label">Unit Cost ($)</label><input class="form-input" type="number" placeholder="0.00" step="0.01"></div>
+      </div>
+      <div id="ap-llp-fields" style="display:none;background:var(--red-d,#FF456015);border:1px solid #FF456030;border-radius:8px;padding:12px;margin-bottom:10px">
+        <div style="font-size:11px;font-weight:700;color:var(--red,#FF4560);margin-bottom:8px">🚨 Life-Limited Fields — Required</div>
+        <div class="form-grid">
+          <div><label class="form-label">TSN (hrs)</label><input class="form-input" placeholder="0.0"></div>
+          <div><label class="form-label">CSN (cycles)</label><input class="form-input" placeholder="0"></div>
+          <div><label class="form-label">Life Limit (hrs)</label><input class="form-input" placeholder="e.g. 3600"></div>
+          <div><label class="form-label">Life Limit (cycles)</label><input class="form-input" placeholder="e.g. 5000"></div>
+          <div style="grid-column:1/-1"><label class="form-label">FAA 8130-3 Tag Reference #</label><input class="form-input" placeholder="8130-3 tag number"></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn btn-secondary" onclick="closeModal('modalAddPart')">Cancel</button>
+        <button class="btn btn-primary" onclick="closeModal('modalAddPart');showToast('Part added to inventory','success')">Add Part</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New PO Modal -->
+<div class="modal-bg hidden" id="modalNewPO">
+  <div class="modal-sheet" style="max-width:500px">
+    <div class="modal-handle"></div>
+    <div style="padding:0 20px 8px"><div class="modal-title">🛒 New Purchase Order</div><div class="modal-sub">Auto-suggests from low stock and pending work orders</div></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div style="grid-column:1/-1"><label class="form-label">Part</label><select class="form-input form-select"><option>CH-48110-1-39 — Oil Filter Element (86 in stock, min 100)</option><option>MIL-PRF-23699-26 — Turbine Oil (7 in stock, min 12)</option><option>AER-W80-12QT — AeroShell W80 Oil (18 in stock, min 24)</option></select></div>
+        <div><label class="form-label">Quantity</label><input class="form-input" type="number" placeholder="50"></div>
+        <div><label class="form-label">Vendor</label><input class="form-input" value="Aircraft Spruce"></div>
+        <div><label class="form-label">Unit Cost</label><input class="form-input" placeholder="$0.00"></div>
+        <div><label class="form-label">Required By</label><input class="form-input" type="date"></div>
+        <div style="grid-column:1/-1"><label class="form-label">Link to Work Order</label><select class="form-input form-select"><option>No work order</option><option>WO-2026-0041 — N847GR 100-Hr</option><option>WO-2026-0038 — N203KV Annual</option></select></div>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn btn-secondary" onclick="closeModal('modalNewPO')">Cancel</button>
+        <button class="btn btn-primary" onclick="closeModal('modalNewPO');showToast('Purchase order created — vendor notified','success')">Create PO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Batch Recall Modal -->
+<div class="modal-bg hidden" id="modalBatchRecall">
+  <div class="modal-sheet" style="max-width:440px">
+    <div class="modal-handle"></div>
+    <div style="padding:0 20px 8px"><div class="modal-title">⛔ Batch Recall Tool</div><div class="modal-sub">Immediately quarantine all parts from a specific lot/batch number</div></div>
+    <div class="modal-body">
+      <div style="background:var(--red-d,#FF456015);border:1px solid #FF456030;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:11px;color:var(--red,#FF4560)">⚠️ This action is immediate. All parts from this lot will be quarantined and open work orders using it will be flagged.</div>
+      <label class="form-label">Lot / Batch Number</label>
+      <input class="form-input" id="batch-modal-lot" placeholder="e.g. LOT-2024-0213" style="margin-bottom:10px">
+      <label class="form-label">Reason</label>
+      <input class="form-input" placeholder="e.g. Manufacturer safety notice..." style="margin-bottom:12px">
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button class="btn btn-secondary" onclick="closeModal('modalBatchRecall')">Cancel</button>
+        <button class="btn btn-primary" style="background:var(--red,#FF4560)" onclick="const l=document.getElementById('batch-modal-lot').value;closeModal('modalBatchRecall');if(document.getElementById('batch-recall-input'))document.getElementById('batch-recall-input').value=l;switchInvTab('quarantine',document.getElementById('invtab-quarantine'));triggerBatchRecall()">⛔ Execute Recall</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
