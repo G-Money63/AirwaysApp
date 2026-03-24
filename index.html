@@ -122,10 +122,7 @@ body::after {
 .pulse-dot   { animation: pulse 1.4s ease infinite; }
 
 /* Stagger children */
-.stagger > * {
-  animation: fadeIn .4s cubic-bezier(.4,0,.2,1) both;
-  -webkit-animation: fadeIn .4s cubic-bezier(.4,0,.2,1) both;
-}
+.stagger > * { opacity: 1; }
 .stagger > *:nth-child(1) { animation-delay:.05s }
 .stagger > *:nth-child(2) { animation-delay:.10s }
 .stagger > *:nth-child(3) { animation-delay:.15s }
@@ -137,7 +134,7 @@ body::after {
    SCREEN ROUTER
 ═══════════════════════════════════════════ */
 .view { display:none; }
-.view.active { display:flex; flex-direction:column; min-height:100vh; }
+.view.active { display:flex; flex-direction:column; min-height:100vh; opacity:1; }
 
 /* ═══════════════════════════════════════════
    ── LOGIN SCREEN ──
@@ -447,7 +444,7 @@ body::after {
 
 /* ── PAGE CONTENT ── */
 .page { display: none; }
-.page.active { display: block; padding: 24px; }
+.page.active { display: block; padding: 24px; opacity: 1 !important; }
 
 /* ── PAGE HEADER ── */
 .page-hdr {
@@ -4135,29 +4132,23 @@ function friendlyError(code) {
 
 // ── showView — defined here so module scope can call it directly ──────
 function showView(id) {
-  // Hide all views
   document.querySelectorAll('.view').forEach(function(v) {
     v.classList.remove('active');
     v.style.display = 'none';
+    v.style.opacity = '1';
   });
-  // Show target view
   var el = document.getElementById('view-' + id);
   if (!el) return;
   el.classList.add('active');
   el.style.display = 'flex';
-  // Force all child pages and content visible (belt+suspenders for Safari)
-  el.querySelectorAll('.page, .stagger > *').forEach(function(c) {
+  el.style.opacity = '1';
+  // Make all pages and content explicitly visible
+  el.querySelectorAll('.page, .page.active, .stagger, .stagger > *, .card, .stat-card, .stat-grid').forEach(function(c) {
     c.style.opacity = '1';
-    c.style.transform = 'none';
+    c.style.transform = 'translateY(0)';
+    c.style.animation = 'none';
   });
-  setTimeout(function() {
-    el.querySelectorAll('.page, .stagger > *').forEach(function(c) {
-      c.style.opacity = '';
-      c.style.transform = '';
-    });
-  }, 1000);
 }
-
 function routeUser(role, name, org) {
   if (role === 'admin') {
     if (document.getElementById('admin-name')) document.getElementById('admin-name').textContent = name;
