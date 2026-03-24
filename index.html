@@ -7411,18 +7411,7 @@ window.devLoginAdmin = function() {
   showToast('Admin panel — dev mode', 'info');
 };
 
-// Add admin dev button to login screen
-setTimeout(() => {
-  const devBtns = document.querySelector('[onclick*="devLogin"]')?.parentElement;
-  if (devBtns && !document.getElementById('admin-dev-btn')) {
-    const btn = document.createElement('button');
-    btn.id = 'admin-dev-btn';
-    btn.onclick = () => window.devLoginAdmin();
-    btn.style.cssText = 'font-family:var(--mono);font-size:10px;color:var(--amber);background:none;border:1px solid #FFB83030;border-radius:5px;padding:3px 10px;margin:0 4px;cursor:pointer';
-    btn.textContent = 'Admin View';
-    devBtns.appendChild(btn);
-  }
-}, 300);
+// Admin dev button injection removed for compatibility
 
 // Auto-load saved Firebase config
 setTimeout(loadSavedConfig, 500);
@@ -7818,23 +7807,32 @@ window.exportUserData = function() {
   showToast('Data exported', 'success');
 };
 
-// ── Add Profile to T1 sidebar nav ────────────────────────────
-setTimeout(() => {
-  const sbBottom = document.querySelector('#sb-t1');
+// ── Add Profile + Logbook to T1 sidebar nav ─────────────────
+setTimeout(function() {
+  var sbBottom = document.getElementById('sb-t1');
   if (sbBottom) {
-    const profBtn = document.createElement('div');
+    var profBtn = document.createElement('div');
     profBtn.className = 'nav-item';
-    profBtn.innerHTML = '<div class="nav-icon">👤</div><div class="nav-label">Profile</div>';
-    profBtn.onclick = () => t1Nav('profile', profBtn);
+    profBtn.innerHTML = '<div class="nav-icon">&#128100;</div><div class="nav-label">Profile</div>';
+    profBtn.onclick = function() { t1Nav('profile', profBtn); };
     sbBottom.insertBefore(profBtn, sbBottom.firstChild);
   }
-  const lbBtn = document.createElement('div');
+  var lbBtn = document.createElement('div');
   lbBtn.id = 'lb-nav-item';
   lbBtn.className = 'nav-item';
-  lbBtn.innerHTML = '<div class="nav-icon">📔</div><div class="nav-label">Digital Logbook</div>';
-  lbBtn.onclick = () => t1Nav('logbook', lbBtn);
-  const docsNav = document.querySelector('[onclick*="t1Nav(\'documents\'"]');
-  if (docsNav) docsNav.parentNode.insertBefore(lbBtn, docsNav.nextSibling);
+  lbBtn.innerHTML = '<div class="nav-icon">&#128212;</div><div class="nav-label">Digital Logbook</div>';
+  lbBtn.onclick = function() { t1Nav('logbook', lbBtn); };
+  var allNavItems = document.querySelectorAll('#sb-t1 .nav-item');
+  var docsNav = null;
+  for (var i = 0; i < allNavItems.length; i++) {
+    if (allNavItems[i].textContent.indexOf('Documents') !== -1) {
+      docsNav = allNavItems[i];
+      break;
+    }
+  }
+  if (docsNav && docsNav.parentNode) {
+    docsNav.parentNode.insertBefore(lbBtn, docsNav.nextSibling);
+  }
 }, 500);
 
 </script>
