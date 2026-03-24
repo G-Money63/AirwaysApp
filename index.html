@@ -2281,15 +2281,15 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
         <div style="padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:8px">
           <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--bg);border-radius:6px">
             <span style="color:var(--text3)">👤 Stakeholder</span>
-            <span style="font-family:monospace;color:var(--text2)">user@airways.test &nbsp;·&nbsp; Fly@ways2026!</span>
+            <span style="font-family:monospace;color:var(--text2)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="83f6f0e6f1c3e2eaf1f4e2faf0adf7e6f0f7">[email&#160;protected]</a> &nbsp;·&nbsp; Fly@ways2026!</span>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--bg);border-radius:6px">
             <span style="color:var(--text3)">🔧 MRO</span>
-            <span style="font-family:monospace;color:var(--text2)">mro@airways.test &nbsp;·&nbsp; MR0@ways2026!</span>
+            <span style="font-family:monospace;color:var(--text2)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcd1ced3fcddd5cecbddc5cf92c8d9cfc8">[email&#160;protected]</a> &nbsp;·&nbsp; MR0@ways2026!</span>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--bg);border-radius:6px">
             <span style="color:var(--text3)">⚡ Admin</span>
-            <span style="font-family:monospace;color:var(--text2)">admin@airways.test &nbsp;·&nbsp; Adm!nW@ys2026</span>
+            <span style="font-family:monospace;color:var(--text2)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d6c696064634d6c647f7a6c747e2379687e79">[email&#160;protected]</a> &nbsp;·&nbsp; Adm!nW@ys2026</span>
           </div>
           <div style="font-size:10px;color:var(--text3);text-align:center;margin-top:2px">Sim mode only — no Firebase needed to test</div>
         </div>
@@ -3904,7 +3904,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   ║  5. Enable Firestore Database                    ║
   ╚══════════════════════════════════════════════════╝
 -->
-<script type="module">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
 import { initializeApp }                                     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
          sendPasswordResetEmail, signOut, onAuthStateChanged,
@@ -4019,11 +4019,22 @@ if (auth) {
 // ── Sign In ───────────────────────────────────
 window.
 window.quickLogin = function(email, pass) {
+  // Fill fields for visual feedback
   const emailEl = document.getElementById('si-email');
   const passEl  = document.getElementById('si-pass');
   if (emailEl) emailEl.value = email;
   if (passEl)  passEl.value  = pass;
-  doSignIn();
+  // Route directly without relying on DOM read timing
+  const QL_CREDS = {
+    'user@airways.test':  { role:'stakeholder', name:'Capt. Gary Johnson', org:'Johnson Aviation LLC' },
+    'mro@airways.test':   { role:'maintenance',  name:'StandardAero VNY',  org:'StandardAero Van Nuys' },
+    'admin@airways.test': { role:'admin',         name:'Platform Admin',    org:'AirWays' },
+  };
+  const cred = QL_CREDS[email];
+  if (cred) {
+    showToast('Welcome, ' + cred.name, 'success');
+    setTimeout(function() { routeUser(cred.role, cred.name, cred.org); }, 200);
+  }
 };
 
 doSignIn = async function() {
@@ -8140,11 +8151,4 @@ console.log('✅ MRO Inventory system loaded');
       <label class="form-label">Reason</label>
       <input class="form-input" placeholder="e.g. Manufacturer safety notice..." style="margin-bottom:12px">
       <div style="display:flex;gap:8px;justify-content:flex-end">
-        <button class="btn btn-secondary" onclick="closeModal('modalBatchRecall')">Cancel</button>
-        <button class="btn btn-primary" style="background:var(--red,#FF4560)" onclick="const l=document.getElementById('batch-modal-lot').value;closeModal('modalBatchRecall');if(document.getElementById('batch-recall-input'))document.getElementById('batch-recall-input').value=l;switchInvTab('quarantine',document.getElementById('invtab-quarantine'));triggerBatchRecall()">⛔ Execute Recall</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-</html>
+        <button class="btn btn-secondary" onclick="closeModal('modalBatchRecall
