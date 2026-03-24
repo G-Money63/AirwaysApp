@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!window.showToast = showToast;
+DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
@@ -4018,24 +4019,7 @@ if (auth) {
 
 // ── Sign In ───────────────────────────────────
 window.
-window.quickLogin = function(email, pass) {
-  // Fill fields for visual feedback
-  const emailEl = document.getElementById('si-email');
-  const passEl  = document.getElementById('si-pass');
-  if (emailEl) emailEl.value = email;
-  if (passEl)  passEl.value  = pass;
-  // Route directly without relying on DOM read timing
-  const QL_CREDS = {
-    'user@airways.test':  { role:'stakeholder', name:'Capt. Gary Johnson', org:'Johnson Aviation LLC' },
-    'mro@airways.test':   { role:'maintenance',  name:'StandardAero VNY',  org:'StandardAero Van Nuys' },
-    'admin@airways.test': { role:'admin',         name:'Platform Admin',    org:'AirWays' },
-  };
-  const cred = QL_CREDS[email];
-  if (cred) {
-    showToast('Welcome, ' + cred.name, 'success');
-    setTimeout(function() { routeUser(cred.role, cred.name, cred.org); }, 200);
-  }
-};
+
 
 doSignIn = async function() {
   const email = document.getElementById('si-email').value.trim();
@@ -4054,7 +4038,7 @@ doSignIn = async function() {
   if (TEST_CREDS[email]) {
     if (pass === TEST_CREDS[email].pass) {
       const c = TEST_CREDS[email];
-      showToast('Welcome, ' + c.name, 'success');
+      window.showToast && window.showToast('Welcome, ' + c.name, 'success');
       setTimeout(() => routeUser(c.role, c.name, c.org), 300);
       return;
     } else {
@@ -4157,6 +4141,12 @@ function routeUser(role, name, org) {
     showView('t1');
   }
 }
+window.routeUser = routeUser;
+
+// ── QUICK LOGIN — defined here so routeUser is in scope ──────────
+
+
+// ── QUICK LOGIN (outside module so it can access routeUser) ──────
 
 function setGreeting(name) {
   const h = new Date().getHours();
@@ -4170,6 +4160,35 @@ function setGreeting(name) {
     `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · Your fleet overview`;
 }
 </script>
+<script>
+// One-tap login — defined after all scripts load
+window.quickLogin = function(email, pass) {
+  var emailEl = document.getElementById('si-email');
+  var passEl  = document.getElementById('si-pass');
+  if (emailEl) emailEl.value = email;
+  if (passEl)  passEl.value  = pass;
+  var map = {
+    'user@airways.test':  ['stakeholder','Capt. Gary Johnson','Johnson Aviation LLC'],
+    'mro@airways.test':   ['maintenance','StandardAero VNY','StandardAero Van Nuys'],
+    'admin@airways.test': ['admin','Platform Admin','AirWays']
+  };
+  var c = map[email];
+  if (!c) return;
+  // Poll for routeUser — module loads async so may not be ready instantly
+  var attempts = 0;
+  function tryRoute() {
+    attempts++;
+    if (window.routeUser) {
+      if (window.showToast) window.showToast('Welcome, ' + c[1], 'success');
+      window.routeUser(c[0], c[1], c[2]);
+    } else if (attempts < 20) {
+      setTimeout(tryRoute, 100); // retry every 100ms up to 2 seconds
+    }
+  }
+  tryRoute();
+};
+</script>
+
 
 <script>
 // ═══════════════════════════════════════════
