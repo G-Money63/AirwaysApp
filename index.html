@@ -7413,7 +7413,7 @@ window.devLoginAdmin = function() {
 
 // Add admin dev button to login screen
 setTimeout(() => {
-  const devBtns = document.querySelector('[onclick="devLogin('t2')"]')?.parentElement;
+  const devBtns = document.querySelector('[onclick*="devLogin"]')?.parentElement;
   if (devBtns && !document.getElementById('admin-dev-btn')) {
     const btn = document.createElement('button');
     btn.id = 'admin-dev-btn';
@@ -7820,7 +7820,6 @@ window.exportUserData = function() {
 
 // ── Add Profile to T1 sidebar nav ────────────────────────────
 setTimeout(() => {
-  const sbBottom = document.querySelector('#sb-t
   const sbBottom = document.querySelector('#sb-t1');
   if (sbBottom) {
     const profBtn = document.createElement('div');
