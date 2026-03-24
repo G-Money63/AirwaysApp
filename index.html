@@ -2261,6 +2261,63 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 .inv-tab.active { background: #1B3A6B !important; color: #fff !important; border-color: #1B3A6B !important; }
 .ps-btn.active  { background: #1B3A6B !important; color: #fff !important; border-color: #1B3A6B !important; }
 
+
+/* ── SIDEBAR TEXT VISIBILITY FIXES ─────────────────────────────────────
+   .nav-item color cascades to parent only; .nav-label has its own rule.
+   Explicitly target every text element inside the navy sidebar.
+═══════════════════════════════════════════════════════════════════════ */
+.sidebar .nav-label      { color: rgba(255,255,255,.88) !important; font-size: 13px; }
+.sidebar .nav-icon       { color: rgba(255,255,255,.75) !important; font-size: 16px; }
+.sidebar .nav-item       { color: rgba(255,255,255,.88) !important; }
+.sidebar .nav-item:hover .nav-label,
+.sidebar .nav-item:hover .nav-icon  { color: #ffffff !important; }
+.sidebar .nav-item.active .nav-label,
+.sidebar .nav-item.active .nav-icon { color: #ffffff !important; font-weight: 700; }
+.sidebar .sb-section     { color: rgba(255,255,255,.55) !important;
+                           font-size: 9px; font-weight: 800;
+                           letter-spacing: .14em; text-transform: uppercase;
+                           padding: 14px 14px 4px; margin-bottom: 0; }
+.sidebar .sb-user-name   { color: #ffffff !important; font-weight: 600; }
+.sidebar .sb-user-sub    { color: rgba(255,255,255,.6) !important; }
+.sidebar .sb-role-badge  { color: rgba(255,255,255,.9) !important; }
+.sidebar .nav-badge      { background: #E8521A !important; color: #fff !important; 
+                           font-weight: 800 !important; }
+/* Sidebar bottom controls */
+.sidebar .sb-ctrl-btn { 
+  color: rgba(255,255,255,.7) !important; 
+  border-color: rgba(255,255,255,.25) !important;
+  background: rgba(255,255,255,.06) !important;
+  font-size: 10px;
+}
+.sidebar .sb-ctrl-btn:hover { 
+  color: #fff !important; 
+  background: rgba(255,255,255,.15) !important; 
+}
+
+/* ── CONTENT AREA TEXT CONTRAST FIXES ──────────────────────────────────
+   var(--text3) in light mode is #7090B0 — too light for sub-labels on
+   white cards. Darken to a more readable blue-grey.
+═══════════════════════════════════════════════════════════════════════ */
+:root {
+  --text3: #5A7898;  /* was #7090B0 — darker for white card readability */
+}
+.page-sub      { color: #5A7898 !important; }
+.stat-label    { color: #5A7898 !important; font-weight: 600; }
+.stat-delta    { font-size: 11px !important; font-weight: 600; }
+.ac-detail     { color: #5A7898 !important; }
+.ac-metric-lbl { color: #5A7898 !important; }
+.doc-meta      { color: #5A7898 !important; }
+.alert-sub     { color: #5A7898 !important; }
+.topbar-breadcrumb { color: #5A7898 !important; }
+.mro-type      { color: #5A7898 !important; }
+.mro-phone     { color: #5A7898 !important; }
+.section-action { color: var(--blue) !important; font-weight: 600; }
+
+/* Form inputs — text must be dark and readable */
+.form-input { color: var(--text) !important; }
+.form-input::placeholder { color: #9AAEC4 !important; }
+.form-label { color: #3A5474 !important; font-weight: 600; }
+
 </style>
 </head>
 <body>
@@ -4749,7 +4806,7 @@ window.showView = showView;
 
 function setGreeting(name) {
   const h = new Date().getHours();
-  const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  const greet = h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
   const parts = name.replace(/^(Capt\.?|Cpt\.?|Dr\.?|Mr\.?|Mrs\.?|Ms\.?)\s*/i,'').split(' '); const firstName = parts[0] || name.split(' ')[0];
   document.getElementById('t1-greeting').textContent = `${greet}, ${firstName}.`;
   const d = new Date();
@@ -4819,7 +4876,7 @@ window.devLogin = function(role) {
     const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
     const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
     const h = d.getHours();
-    const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+    const greet = h < 12 ? 'Good Morning' : h < 17 ? 'Good Afternoon' : 'Good Evening';
     document.getElementById('t1-greeting').textContent = `${greet}, Captain.`;
     document.getElementById('t1-datestr').textContent =
       `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · Your fleet overview`;
