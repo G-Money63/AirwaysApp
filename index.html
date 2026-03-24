@@ -447,7 +447,7 @@ body::after {
 
 /* ── PAGE CONTENT ── */
 .page { display: none; }
-.page.active { display: block; padding: 24px; animation: fadeIn .3s ease both; }
+.page.active { display: block; padding: 24px; }
 
 /* ── PAGE HEADER ── */
 .page-hdr {
@@ -4140,40 +4140,23 @@ function showView(id) {
     v.classList.remove('active');
     v.style.display = 'none';
   });
-
+  // Show target view
   var el = document.getElementById('view-' + id);
   if (!el) return;
-
-  // Show target view
   el.classList.add('active');
   el.style.display = 'flex';
-
-  // ── SAFARI iOS FIX ──────────────────────────────────────────────
-  // CSS fill-mode:both keeps stagger children at opacity:0 (the 'from' 
-  // keyframe state) when a display:none parent becomes visible on Safari iOS.
-  // The animation simply does not restart. Setting animation='none' then ''
-  // does NOT reliably fix this on Safari -- it just re-applies the fill-mode.
-  //
-  // CORRECT FIX: immediately override opacity/transform with inline styles,
-  // which beat CSS specificity including animation fill-mode. Then clear the 
-  // override after 1.2s. By then all stagger animations have completed and  
-  // fill-mode:both keeps them at the 'to' state (opacity:1) permanently.
-  // Clearing our inline override causes zero visual change. ✓
-  var kids = el.querySelectorAll('.stagger > *');
-  if (kids.length) {
-    kids.forEach(function(c) {
-      c.style.opacity = '1';
-      c.style.transform = 'translateY(0)';
+  // Force all child pages and content visible (belt+suspenders for Safari)
+  el.querySelectorAll('.page, .stagger > *').forEach(function(c) {
+    c.style.opacity = '1';
+    c.style.transform = 'none';
+  });
+  setTimeout(function() {
+    el.querySelectorAll('.page, .stagger > *').forEach(function(c) {
+      c.style.opacity = '';
+      c.style.transform = '';
     });
-    setTimeout(function() {
-      kids.forEach(function(c) {
-        c.style.opacity = '';
-        c.style.transform = '';
-      });
-    }, 1200);
-  }
+  }, 1000);
 }
-
 
 function routeUser(role, name, org) {
   if (role === 'admin') {
