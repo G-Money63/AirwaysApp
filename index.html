@@ -2299,6 +2299,9 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 
     </div>
 
+  </div><!-- close login-outer -->
+</div><!-- close view-login -->
+
 <!-- ═══════════════════════════════════════════
      VIEW: TYPE 1 — STAKEHOLDER
 ═══════════════════════════════════════════ -->
@@ -4222,13 +4225,7 @@ window.quickLogin = function(email, pass) {
 // APP JAVASCRIPT (non-Firebase)
 // ═══════════════════════════════════════════
 
-// ── View router ──────────────────────────────
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const el = document.getElementById('view-' + id);
-  if (el) el.classList.add('active');
-}
-window.showView = showView;
+// ── View router — defined in CORE LOGIN FUNCTIONS script above ──
 
 // ── DEV shortcuts ─────────────────────────────
 window.devLogin = function(role) {
