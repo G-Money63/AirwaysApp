@@ -5822,11 +5822,11 @@ Service: {service_type}
 
 QUOTE SUMMARY
 ─────────────────────────
-Labor:       ${labor}
-Parts:       ${parts}
-Misc/Fees:   ${misc}
+Labor:       \${labor}
+Parts:       \${parts}
+Misc/Fees:   \${misc}
 ─────────────────────────
-TOTAL:       ${total}
+TOTAL:       \${total}
 
 Estimated Duration: {duration}
 Estimated Start:    {start_date}
@@ -5835,8 +5835,8 @@ Please log in to AirWays to accept or decline this quote.
 Quote expires in 72 hours.
 
 — AirWays Platform` },
-      { type:'push', title:'💰 Quote Ready — #{id}', body:'{mro_name} quoted ${total} for {service_type}' },
-      { type:'inapp', title:'Quote ready for your approval', body:'#{id} — ${total} from {mro_name}' },
+      { type:'push', title:'💰 Quote Ready — #{id}', body:'{mro_name} quoted \${total} for {service_type}' },
+      { type:'inapp', title:'Quote ready for your approval', body:'#{id} — \${total} from {mro_name}' },
     ],
   },
   confirmed: {
@@ -5848,13 +5848,13 @@ Quote expires in 72 hours.
 
 Aircraft: {aircraft} ({reg})
 Service: {service_type}
-Accepted Quote: ${total}
+Accepted Quote: \${total}
 Preferred Start: {start_date}
 
 Please confirm the scheduling in AirWays and proceed with parts ordering if needed.
 
 — AirWays Platform` },
-      { type:'inapp', title:'Quote Accepted ✓', body:'{owner_name} accepted ${total} for #{id}' },
+      { type:'inapp', title:'Quote Accepted ✓', body:'{owner_name} accepted \${total} for #{id}' },
     ],
     to_owner: [
       { type:'push', title:'Confirmed ✅', body:'#{id} is confirmed with {mro_name}' },
@@ -5931,7 +5931,7 @@ Request #: {id}
 Aircraft: {aircraft} ({reg})
 Service: {service_type}
 Completed: {complete_date}
-Invoice Total: ${total}
+Invoice Total: \${total}
 Invoice #: INV-{inv_id}
 
 Invoice is due within 30 days. View and pay in AirWays.
@@ -5939,7 +5939,7 @@ Invoice is due within 30 days. View and pay in AirWays.
 Thank you for choosing {mro_name}.
 
 — AirWays Platform` },
-      { type:'push', title:'Request Complete 🏁', body:'Invoice ${total} issued for #{id}' },
+      { type:'push', title:'Request Complete 🏁', body:'Invoice \${total} issued for #{id}' },
     ],
   },
 };
