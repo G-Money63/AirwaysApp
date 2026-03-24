@@ -3996,9 +3996,10 @@ try {
 
 // ── Auth state observer ──────────────────────
 if (auth) {
+  // Only attach auth listener when Firebase is actually configured
+if (_firebaseReady && auth) {
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      // Fetch user role from Firestore
       try {
         const snap = await getDoc(doc(db, 'users', user.uid));
         const data = snap.exists() ? snap.data() : {};
@@ -4012,9 +4013,14 @@ if (auth) {
         routeUser('stakeholder', user.email, '');
       }
     } else {
-      showView('login');
+      // Only redirect to login if we're not already on the login screen
+      // and not mid-way through a sim-mode login
+      const loginView = document.getElementById('view-login');
+      const isOnLogin = loginView && loginView.classList.contains('active');
+      if (!isOnLogin) showView('login');
     }
   });
+}
 }
 
 // ── Sign In ───────────────────────────────────
@@ -4126,19 +4132,19 @@ function friendlyError(code) {
 function routeUser(role, name, org) {
   if (role === 'admin') {
     if (document.getElementById('admin-name')) document.getElementById('admin-name').textContent = name;
-    showView('admin');
+    (window.showView||showView)('admin');
     if (window.renderAdminDashboard) renderAdminDashboard();
     if (window.loadSavedConfig) loadSavedConfig();
   } else if (role === 'maintenance') {
     document.getElementById('t2-name').textContent = name;
     document.getElementById('t2-sub').textContent  = org || 'Maintenance Provider';
     document.getElementById('t2-avatar').textContent = name.substring(0,2).toUpperCase();
-    showView('t2');
+    (window.showView||showView)('t2');
   } else {
     document.getElementById('t1-name').textContent = name;
     document.getElementById('t1-avatar').textContent = name.substring(0,2).toUpperCase();
     setGreeting(name);
-    showView('t1');
+    (window.showView||showView)('t1');
   }
 }
 window.routeUser = routeUser;
@@ -4201,6 +4207,7 @@ function showView(id) {
   const el = document.getElementById('view-' + id);
   if (el) el.classList.add('active');
 }
+window.showView = showView;
 
 // ── DEV shortcuts ─────────────────────────────
 window.devLogin = function(role) {
@@ -4216,9 +4223,9 @@ window.devLogin = function(role) {
     document.getElementById('t1-greeting').textContent = `${greet}, Captain.`;
     document.getElementById('t1-datestr').textContent =
       `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · Your fleet overview`;
-    showView('t1');
+    (window.showView||showView)('t1');
   } else {
-    showView('t2');
+    (window.showView||showView)('t2');
   }
   showToast('Dev mode — Firebase not active', 'info');
 };
@@ -7331,7 +7338,7 @@ const _origRouteUser = window.routeUser || null;
 window.routeAdminIfNeeded = function(role, name, org) {
   if (role === 'admin') {
     document.getElementById('admin-name').textContent = name;
-    showView('admin');
+    (window.showView||showView)('admin');
     renderAdminDashboard();
     loadSavedConfig();
   } else {
@@ -7340,11 +7347,11 @@ window.routeAdminIfNeeded = function(role, name, org) {
       document.getElementById('t2-name').textContent = name;
       document.getElementById('t2-sub').textContent  = org || 'Maintenance Provider';
       document.getElementById('t2-avatar').textContent = name.substring(0,2).toUpperCase();
-      showView('t2');
+      (window.showView||showView)('t2');
     } else {
       document.getElementById('t1-name').textContent = name;
       document.getElementById('t1-avatar').textContent = name.substring(0,2).toUpperCase();
-      showView('t1');
+      (window.showView||showView)('t1');
     }
   }
 };
