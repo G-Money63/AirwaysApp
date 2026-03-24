@@ -4129,22 +4129,43 @@ function friendlyError(code) {
   return map[code] || 'An error occurred. Please try again.';
 }
 
+// ── showView — defined here so module scope can call it directly ──────
+function showView(id) {
+  document.querySelectorAll('.view').forEach(function(v) {
+    v.classList.remove('active');
+    v.style.display = 'none';          // belt + suspenders
+  });
+  var el = document.getElementById('view-' + id);
+  if (!el) return;
+  el.classList.add('active');
+  el.style.display = 'flex';           // force display regardless of CSS class timing
+
+  // Force-restart stagger animations (Safari iOS fix — 
+  // animations on display:none elements don't replay automatically)
+  el.querySelectorAll('.stagger > *, .stagger').forEach(function(child) {
+    child.style.animation = 'none';
+    child.offsetHeight;                // trigger reflow
+    child.style.animation = '';
+  });
+}
+
+
 function routeUser(role, name, org) {
   if (role === 'admin') {
     if (document.getElementById('admin-name')) document.getElementById('admin-name').textContent = name;
-    (window.showView||showView)('admin');
+    showView('admin');
     if (window.renderAdminDashboard) renderAdminDashboard();
     if (window.loadSavedConfig) loadSavedConfig();
   } else if (role === 'maintenance') {
     document.getElementById('t2-name').textContent = name;
     document.getElementById('t2-sub').textContent  = org || 'Maintenance Provider';
     document.getElementById('t2-avatar').textContent = name.substring(0,2).toUpperCase();
-    (window.showView||showView)('t2');
+    showView('t2');
   } else {
     document.getElementById('t1-name').textContent = name;
     document.getElementById('t1-avatar').textContent = name.substring(0,2).toUpperCase();
     setGreeting(name);
-    (window.showView||showView)('t1');
+    showView('t1');
   }
 }
 window.routeUser = routeUser;
@@ -4223,9 +4244,9 @@ window.devLogin = function(role) {
     document.getElementById('t1-greeting').textContent = `${greet}, Captain.`;
     document.getElementById('t1-datestr').textContent =
       `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · Your fleet overview`;
-    (window.showView||showView)('t1');
+    showView('t1');
   } else {
-    (window.showView||showView)('t2');
+    showView('t2');
   }
   showToast('Dev mode — Firebase not active', 'info');
 };
@@ -7338,7 +7359,7 @@ const _origRouteUser = window.routeUser || null;
 window.routeAdminIfNeeded = function(role, name, org) {
   if (role === 'admin') {
     document.getElementById('admin-name').textContent = name;
-    (window.showView||showView)('admin');
+    showView('admin');
     renderAdminDashboard();
     loadSavedConfig();
   } else {
@@ -7347,11 +7368,11 @@ window.routeAdminIfNeeded = function(role, name, org) {
       document.getElementById('t2-name').textContent = name;
       document.getElementById('t2-sub').textContent  = org || 'Maintenance Provider';
       document.getElementById('t2-avatar').textContent = name.substring(0,2).toUpperCase();
-      (window.showView||showView)('t2');
+      showView('t2');
     } else {
       document.getElementById('t1-name').textContent = name;
       document.getElementById('t1-avatar').textContent = name.substring(0,2).toUpperCase();
-      (window.showView||showView)('t1');
+      showView('t1');
     }
   }
 };
