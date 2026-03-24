@@ -4009,16 +4009,16 @@ if (_firebaseReady && auth) {
           ? `${data.firstName} ${data.lastName || ''}`
           : user.email.split('@')[0];
         const org = data.org || '';
-        routeUser(role, displayName, org);
+        if(window.routeUser) window.routeUser(role, displayName, org);
       } catch(e) {
-        routeUser('stakeholder', user.email, '');
+        if(window.routeUser) window.routeUser('stakeholder', user.email, '');
       }
     } else {
       // Only redirect to login if we're not already on the login screen
       // and not mid-way through a sim-mode login
       const loginView = document.getElementById('view-login');
       const isOnLogin = loginView && loginView.classList.contains('active');
-      if (!isOnLogin) showView('login');
+      if (!isOnLogin) window.showView('login');
     }
   });
 }
@@ -4107,7 +4107,7 @@ window.doSignOut = async function() {
   try {
     if (auth) await signOut(auth);
   } catch(e) {}
-  showView('login');
+  window.showView('login');
   showToast('Signed out successfully', 'info');
 };
 
@@ -4131,27 +4131,55 @@ function friendlyError(code) {
 }
 
 // ── showView — defined here so module scope can call it directly ──────
+
+// ── QUICK LOGIN — defined here so routeUser is in scope ──────────
+
+
+// ── QUICK LOGIN (outside module so it can access routeUser) ──────
+</script>
+<script>
+// ── CORE LOGIN FUNCTIONS — regular script, no module scope issues ─────────
 function showView(id) {
   document.querySelectorAll('.view').forEach(function(v) {
     v.classList.remove('active');
     v.style.display = 'none';
-    v.style.opacity = '1';
   });
   var el = document.getElementById('view-' + id);
-  if (!el) return;
+  if (!el) { console.error('showView: view-' + id + ' not found'); return; }
   el.classList.add('active');
   el.style.display = 'flex';
-  el.style.opacity = '1';
-  // Make all pages and content explicitly visible
-  el.querySelectorAll('.page, .page.active, .stagger, .stagger > *, .card, .stat-card, .stat-grid').forEach(function(c) {
+  // Force all pages visible — belt+suspenders
+  el.querySelectorAll('.page').forEach(function(p) {
+    p.style.display = p.classList.contains('active') ? 'block' : 'none';
+    p.style.opacity = '1';
+    p.style.visibility = 'visible';
+  });
+  el.querySelectorAll('.stagger > *, .card, .stat-card').forEach(function(c) {
     c.style.opacity = '1';
-    c.style.transform = 'translateY(0)';
+    c.style.transform = 'none';
     c.style.animation = 'none';
   });
 }
+window.showView = showView;
+
+
+function setGreeting(name) {
+  const h = new Date().getHours();
+  const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  const firstName = name.split(' ')[0];
+  document.getElementById('t1-greeting').textContent = `${greet}, ${firstName}.`;
+  const d = new Date();
+  const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  document.getElementById('t1-datestr').textContent =
+    `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · Your fleet overview`;
+}
+
+
 function routeUser(role, name, org) {
   if (role === 'admin') {
-    if (document.getElementById('admin-name')) document.getElementById('admin-name').textContent = name;
+    var an = document.getElementById('admin-name');
+    if (an) an.textContent = name;
     showView('admin');
     if (window.renderAdminDashboard) renderAdminDashboard();
     if (window.loadSavedConfig) loadSavedConfig();
@@ -4169,30 +4197,11 @@ function routeUser(role, name, org) {
 }
 window.routeUser = routeUser;
 
-// ── QUICK LOGIN — defined here so routeUser is in scope ──────────
-
-
-// ── QUICK LOGIN (outside module so it can access routeUser) ──────
-
-function setGreeting(name) {
-  const h = new Date().getHours();
-  const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  const firstName = name.split(' ')[0];
-  document.getElementById('t1-greeting').textContent = `${greet}, ${firstName}.`;
-  const d = new Date();
-  const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  document.getElementById('t1-datestr').textContent =
-    `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · Your fleet overview`;
-}
-</script>
-<script>
-// One-tap login — defined after all scripts load
 window.quickLogin = function(email, pass) {
-  var emailEl = document.getElementById('si-email');
-  var passEl  = document.getElementById('si-pass');
-  if (emailEl) emailEl.value = email;
-  if (passEl)  passEl.value  = pass;
+  var ef = document.getElementById('si-email');
+  var pf = document.getElementById('si-pass');
+  if (ef) ef.value = email;
+  if (pf) pf.value = pass;
   var map = {
     'user@airways.test':  ['stakeholder','Capt. Gary Johnson','Johnson Aviation LLC'],
     'mro@airways.test':   ['maintenance','StandardAero VNY','StandardAero Van Nuys'],
@@ -4200,20 +4209,12 @@ window.quickLogin = function(email, pass) {
   };
   var c = map[email];
   if (!c) return;
-  // Poll for routeUser — module loads async so may not be ready instantly
-  var attempts = 0;
-  function tryRoute() {
-    attempts++;
-    if (window.routeUser) {
-      if (window.showToast) window.showToast('Welcome, ' + c[1], 'success');
-      window.routeUser(c[0], c[1], c[2]);
-    } else if (attempts < 20) {
-      setTimeout(tryRoute, 100); // retry every 100ms up to 2 seconds
-    }
-  }
-  tryRoute();
+  if (window.showToast) window.showToast('Welcome, ' + c[1], 'success');
+  routeUser(c[0], c[1], c[2]);
 };
 </script>
+
+
 
 
 <script>
