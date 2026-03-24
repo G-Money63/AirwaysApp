@@ -1742,7 +1742,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 .appt-step-title { font-family: var(--body); font-size: 14px; font-weight: 700; color: var(--text); }
 
 /* Calendar slot picker */
-.cal-grid {
+.cal-slot-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 10px;
 }
 .cal-slot {
@@ -3461,7 +3461,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
         <div>
           <div class="section-hdr"><div class="section-title">March 2026</div></div>
           <div class="card card-pad no-hover" style="margin-bottom:14px">
-            <div class="cal-grid">
+            <div class="cal-slot-grid">
               <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div>
               <div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
               <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
@@ -4143,25 +4143,23 @@ function friendlyError(code) {
 <script>
 // ── CORE LOGIN FUNCTIONS — regular script, no module scope issues ─────────
 function showView(id) {
+  // Hide all views
   document.querySelectorAll('.view').forEach(function(v) {
     v.classList.remove('active');
     v.style.display = 'none';
   });
+  // Show target view
   var el = document.getElementById('view-' + id);
-  if (!el) { console.error('showView: view-' + id + ' not found'); return; }
+  if (!el) { console.error('showView: #view-' + id + ' not found'); return; }
   el.classList.add('active');
   el.style.display = 'flex';
-  // Force all pages visible — belt+suspenders
-  el.querySelectorAll('.page').forEach(function(p) {
-    p.style.display = p.classList.contains('active') ? 'block' : 'none';
-    p.style.opacity = '1';
-    p.style.visibility = 'visible';
-  });
+  // Force stagger children visible (animation fill-mode fix)
   el.querySelectorAll('.stagger > *, .card, .stat-card').forEach(function(c) {
     c.style.opacity = '1';
     c.style.transform = 'none';
     c.style.animation = 'none';
   });
+  // DO NOT touch .page display — t1Nav/t2Nav manage that via CSS active class
 }
 window.showView = showView;
 
@@ -5590,13 +5588,13 @@ function renderMRODirectory() {
           <div class="mro-certs">
             ${m.part145 ? '<span class="cert-badge part145">FAA Part 145</span>' : '<span class="cert-badge" style="background:var(--card2);border-color:var(--border2);color:var(--text3)">Non-145</span>'}
             ${m.easa_cert ? '<span class="cert-badge easa">EASA</span>' : ''}
-            ${m.specialties.includes('AOG') ? '<span class="cert-badge aog">AOG 24/7</span>' : ''}
+            ${(m.specialties||[]).includes('AOG') ? '<span class="cert-badge aog">AOG 24/7</span>' : ''}
             ${m.faa_cert ? `<span class="cert-badge" style="background:var(--card2);border-color:var(--border2);color:var(--text3);font-size:8px">Cert: ${m.faa_cert}</span>` : ''}
           </div>
         </div>
       </div>
       <div class="mro-specialties">
-        ${m.specialties.map(s => `<span class="spec-tag">${s}</span>`).join('')}
+        ${(m.specialties||[]).map(s => `<span class="spec-tag">${s}</span>`).join('')}
       </div>
       <div class="mro-footer">
         <div class="mro-phone">📞 ${m.phone}</div>
