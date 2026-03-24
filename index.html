@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -163,7 +163,7 @@ body::after {
 }
 
 .login-outer {
-  width: 100%; max-width: 420px;
+  width: 100%; max-width: 440px;
   padding: 24px 20px;
   position: relative; z-index: 1;
   animation: fadeIn .5s cubic-bezier(.4,0,.2,1) both;
@@ -242,14 +242,19 @@ body::after {
 
 .form-input-wrap { position: relative; }
 .form-input-icon {
-  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  color: var(--text3); font-size: 14px; cursor: pointer;
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  color: var(--text3); font-size: 13px; cursor: pointer;
+  width: 26px; height: 26px; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .13s; user-select: none;
+  font-family: var(--mono); font-weight: 500;
 }
+.form-input-icon:hover { background: var(--border); color: var(--text2); }
 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 .btn-login {
-  width: 100%; padding: 13px;
+  width: 100%; padding: 16px;
   background: var(--blue); border: none;
   border-radius: 9px;
   font-family: var(--display); font-size: 17px; font-weight: 700;
@@ -760,17 +765,141 @@ body::after {
 .toast.hidden  { display: none; }
 
 /* ── RESPONSIVE ── */
+/* ══════════════════════════════════════════
+   MOBILE — Full responsive overrides
+══════════════════════════════════════════ */
+
+/* Touch target minimum */
+button, .btn, .nav-item, .rc-action-btn, .admin-action-btn,
+.filter-tab, .ps-btn, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+/* Override min-height for specific tiny elements that should stay small */
+.nav-badge, .pill, .vault-tag, .req-id, .inv-tier-llp,
+.inv-tier-rotable, .inv-tier-expendable, .inv-tier-consumable,
+.badge, .inv-cond-new, .inv-status-stock {
+  min-height: unset; min-width: unset;
+}
+
 @media (max-width: 768px) {
+
+  /* ── SIDEBAR ── */
   .sidebar { width: 60px; }
   .sb-logo-name, .nav-label, .sb-role,
   .sb-user-name, .sb-user-sub, .sb-controls,
   .sb-section { display: none; }
-  .sb-logo { padding: 16px; justify-content: center; }
-  .nav-item { padding: 12px; justify-content: center; }
-  .nav-badge { position: absolute; top: 6px; right: 6px; }
-  .stat-grid.col4 { grid-template-columns: repeat(2,1fr); }
-  .layout-2col, .layout-3col { grid-template-columns: 1fr; }
-  .page { padding: 16px; }
+  .sb-logo { padding: 12px; justify-content: center; }
+  .nav-item { padding: 14px; justify-content: center; min-height: 52px; }
+  .nav-icon { font-size: 20px; }
+  .nav-badge { position: absolute; top: 6px; right: 4px; min-height: unset; min-width: unset; }
+
+  /* ── LAYOUT ── */
+  .page { padding: 12px; }
+  .page-hdr { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .page-actions { width: 100%; display: flex; gap: 8px; flex-wrap: wrap; }
+  .page-actions .btn { flex: 1; justify-content: center; padding: 10px; font-size: 13px; }
+
+  /* ── STAT GRIDS ── */
+  .stat-grid.col4 { grid-template-columns: repeat(2,1fr); gap: 8px; }
+  .stat-grid.col3 { grid-template-columns: repeat(2,1fr); gap: 8px; }
+  .stat-grid.col2 { grid-template-columns: 1fr; }
+  .stat-card { padding: 12px; }
+  .stat-val { font-size: 22px; }
+
+  /* ── MULTI-COLUMN LAYOUTS ── */
+  .layout-2col, .layout-3col,
+  .g2, .g3, .g4,
+  .two-col, .three-col { grid-template-columns: 1fr !important; }
+
+  /* ── SERVICE REQUEST CARDS ── */
+  .rc-header { padding: 14px 14px 10px; gap: 10px; }
+  .rc-aircraft-badge { padding: 8px 10px; min-width: 60px; }
+  .rc-reg { font-size: 13px; }
+  .rc-service { font-size: 15px; }
+  .rc-right { display: none; } /* hide req ID / date on small screens — in footer */
+  .rc-progress { padding: 0 12px 12px; overflow-x: auto; }
+  .rc-progress-track { min-width: 480px; } /* allow horizontal scroll on very small */
+  .rc-status-content { margin: 0 12px 12px; padding: 11px 12px; }
+  .rc-quote-total { font-size: 26px; }
+  .rc-footer { padding: 10px 14px; gap: 6px; }
+  .rc-footer-meta { font-size: 11px; }
+  .rc-action-btn { padding: 10px 14px; font-size: 13px; min-height: 44px; }
+  /* Stack footer actions on very small screens */
+  .rc-footer > div:last-child { width: 100%; margin-left: 0 !important; }
+  .rc-footer > div:last-child .rc-action-btn { width: 100%; justify-content: center; }
+
+  /* ── DOCUMENT VAULT ── */
+  .vault-doc-card { flex-wrap: wrap; padding: 12px; gap: 10px; }
+  .vault-doc-actions { 
+    width: 100%; display: flex; gap: 8px; margin-top: 4px;
+    border-top: 1px solid var(--border); padding-top: 10px;
+  }
+  .vault-doc-actions .admin-action-btn { 
+    flex: 1; text-align: center; justify-content: center;
+    padding: 10px 8px; font-size: 12px; min-height: 44px;
+  }
+  .vault-doc-size { display: none; } /* hide file size on mobile */
+
+  /* ── FORMS & MODALS ── */
+  .modal-sheet { max-width: 100% !important; border-radius: 20px 20px 0 0; }
+  .form-grid { grid-template-columns: 1fr !important; }
+  .form-input, .form-select { font-size: 16px; } /* prevent iOS zoom */
+  input, select, textarea { font-size: 16px !important; } /* prevent iOS zoom */
+
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { min-width: 600px; }
+  th, td { padding: 8px 10px; font-size: 11px; white-space: nowrap; }
+
+  /* ── INVENTORY ── */
+  #inv-stats { grid-template-columns: repeat(2,1fr) !important; }
+  .llp-card-hdr { flex-direction: column; gap: 10px; }
+  .llp-card-hdr > div:last-child { flex-direction: row; width: 100%; }
+  .llp-card-hdr > div:last-child button { flex: 1; }
+
+  /* ── FILTER TABS ── */
+  .req-filter-row { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap !important; padding-bottom: 4px; }
+  .filter-tab { white-space: nowrap; min-height: 40px; padding: 8px 14px; font-size: 12px; flex-shrink: 0; }
+
+  /* ── PIPELINE DETAIL MODAL ── */
+  .pipeline-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .pipe-step { min-width: 64px; }
+
+  /* ── PAGE HEADER ── */
+  .page-title { font-size: 22px; }
+  .page-sub { font-size: 12px; }
+
+  /* ── DASHBOARD STAT GRID ── */
+  .dash-stats { grid-template-columns: repeat(2,1fr) !important; gap: 8px; }
+
+  /* ── BUTTONS GLOBALLY ── */
+  .btn { padding: 10px 16px; font-size: 13px; }
+  .btn.btn-primary, .btn.btn-secondary { min-height: 44px; }
+
+  /* ── SEARCH FILTER BAR ── */
+  .search-filter-bar, .airport-search-bar { flex-direction: column; gap: 8px; }
+  .search-filter-bar select, .airport-search-bar select,
+  .search-filter-bar input, .airport-search-bar input { width: 100%; max-width: unset !important; }
+
+  /* ── ADMIN PANELS ── */
+  .admin-split { flex-direction: column; }
+  .admin-card-grid { grid-template-columns: 1fr !important; }
+
+  /* ── AIRWORTHINESS ── */
+  .airworthy-banner { flex-direction: column; gap: 8px; align-items: flex-start; }
+
+  /* ── PO ITEMS ── */
+  .po-item { flex-wrap: wrap; }
+  .po-eta { width: 100%; text-align: left; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 4px; }
+}
+
+/* Extra small phones (iPhone SE etc) */
+@media (max-width: 390px) {
+  .rc-aircraft-badge { display: none; }
+  .rc-header { padding: 12px; }
+  .rc-service { font-size: 14px; }
+  .stat-grid.col4 { grid-template-columns: 1fr 1fr; gap: 6px; }
 }
 
 /* ── REAL LOGO IMAGE ── */
@@ -926,16 +1055,148 @@ body::after {
 }
 
 /* ── REQUEST CARD ── */
+
+/* ═══════════════════════════════════════
+   REDESIGNED REQUEST CARDS — Large Tiles
+═══════════════════════════════════════ */
 .req-card {
   background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden;
-  margin-bottom: 12px; transition: border-color .15s;
+  border-radius: 14px; overflow: hidden;
+  margin-bottom: 14px; transition: box-shadow .15s, border-color .15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  cursor: pointer;
 }
-.req-card:hover { border-color: var(--border2); cursor: pointer; }
-.req-card.req-urgent  { border-left: 3px solid var(--red); }
-.req-card.req-pending { border-left: 3px solid var(--amber); }
-.req-card.req-active  { border-left: 3px solid var(--blue); }
-.req-card.req-done    { border-left: 3px solid var(--green); }
+.req-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.10); border-color: var(--border2); }
+.req-card.req-urgent  { border-top: 3px solid var(--red); }
+.req-card.req-pending { border-top: 3px solid var(--amber); }
+.req-card.req-active  { border-top: 3px solid var(--blue); }
+.req-card.req-done    { border-top: 3px solid var(--green); }
+
+/* Card top header strip */
+.rc-header {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 18px 12px;
+}
+.rc-aircraft-badge {
+  background: var(--navy, #1B3A6B); color: #fff;
+  border-radius: 10px; padding: 10px 14px; flex-shrink: 0;
+  text-align: center; min-width: 72px;
+}
+.rc-reg   { font-family: var(--mono); font-size: 15px; font-weight: 800; letter-spacing: .05em; }
+.rc-model { font-size: 9px; opacity: .7; margin-top: 2px; white-space: nowrap; }
+
+.rc-main { flex: 1; min-width: 0; }
+.rc-service { font-size: 17px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+.rc-sub { font-size: 12px; color: var(--text3); margin-bottom: 7px; }
+.rc-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+
+.rc-right { flex-shrink: 0; text-align: right; }
+.rc-id { font-family: var(--mono); font-size: 10px; color: var(--blue);
+  background: var(--blue-d); border: 1px solid var(--blue-g);
+  padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 6px; }
+.rc-date { font-size: 10px; color: var(--text3); }
+
+/* Progress track */
+.rc-progress {
+  padding: 0 18px 14px;
+}
+.rc-progress-track {
+  display: flex; align-items: flex-start; position: relative;
+  margin-bottom: 8px;
+}
+.rc-progress-track::before {
+  content: ''; position: absolute; top: 14px; left: 14px; right: 14px;
+  height: 3px; background: var(--border2); z-index: 0;
+}
+.rc-progress-fill {
+  position: absolute; top: 14px; left: 14px;
+  height: 3px; background: var(--green); z-index: 1;
+  transition: width .4s ease;
+}
+.rc-stage {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; position: relative; z-index: 2;
+}
+.rc-stage-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; border: 2px solid var(--border2);
+  background: var(--card); transition: all .2s;
+  margin-bottom: 5px;
+}
+.rc-stage.done .rc-stage-dot {
+  background: var(--green); border-color: var(--green); color: #fff; font-size: 11px;
+}
+.rc-stage.active .rc-stage-dot {
+  background: var(--blue); border-color: var(--blue); color: #fff;
+  box-shadow: 0 0 0 4px var(--blue-g);
+}
+.rc-stage.skip .rc-stage-dot { background: var(--card2); color: var(--text3); }
+.rc-stage-label {
+  font-size: 9px; color: var(--text3); text-align: center; line-height: 1.2;
+  max-width: 54px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.rc-stage.active .rc-stage-label { color: var(--blue); font-weight: 700; }
+.rc-stage.done .rc-stage-label   { color: var(--green); }
+
+/* Status-specific content area */
+.rc-status-content {
+  margin: 0 18px 14px; padding: 12px 14px;
+  border-radius: 10px; border: 1px solid var(--border);
+  background: var(--card2);
+}
+.rc-status-content.urgent  { background: var(--red-d); border-color: #FF456030; }
+.rc-status-content.action  { background: var(--amber-d); border-color: #FFB83030; }
+.rc-status-content.progress{ background: var(--blue-d); border-color: var(--blue-g); }
+.rc-status-content.done    { background: var(--green-d); border-color: #00D68F30; }
+
+.rc-sc-label { font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .1em; margin-bottom: 6px; }
+.rc-sc-label.urgent  { color: var(--red); }
+.rc-sc-label.action  { color: var(--amber); }
+.rc-sc-label.progress{ color: var(--blue); }
+.rc-sc-label.done    { color: var(--green); }
+
+/* Quote block inside card */
+.rc-quote-row { display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; margin-bottom: 3px; }
+.rc-quote-total { font-size: 22px; font-weight: 800; color: var(--blue); }
+
+/* In-progress block */
+.rc-progress-pct {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.rc-pct-ring { position: relative; width: 48px; height: 48px; flex-shrink: 0; }
+.rc-pct-ring svg { transform: rotate(-90deg); }
+.rc-pct-val { position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; font-size: 12px; font-weight: 800; color: var(--text); }
+
+/* Work bar for in-progress */
+.rc-work-bar { height: 6px; background: var(--border2); border-radius: 3px;
+  overflow: hidden; margin-bottom: 4px; }
+.rc-work-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green));
+  border-radius: 3px; transition: width .4s; }
+
+/* Card footer / actions */
+.rc-footer {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-top: 1px solid var(--border);
+  background: var(--card2); flex-wrap: wrap;
+}
+.rc-footer-meta { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 4px; }
+.rc-action-btn {
+  padding: 7px 16px; border-radius: 7px; font-size: 12px; font-weight: 700;
+  cursor: pointer; border: none; transition: all .13s;
+}
+.rc-action-btn.primary { background: var(--blue); color: #fff; }
+.rc-action-btn.primary:hover { opacity: .9; }
+.rc-action-btn.success { background: var(--green); color: #fff; }
+.rc-action-btn.success:hover { opacity: .9; }
+.rc-action-btn.warn { background: var(--amber-d); color: var(--amber);
+  border: 1px solid #FFB83030; }
+.rc-action-btn.ghost { background: var(--surface); color: var(--text2);
+  border: 1px solid var(--border2); }
+
 
 .req-header { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; }
 .req-id {
@@ -1137,9 +1398,9 @@ body::after {
 .admin-user-meta { font-family:var(--mono); font-size:10px; color:var(--text3); margin-top:2px; }
 .admin-user-actions { display:flex; gap:6px; flex-shrink:0; }
 .admin-action-btn {
-  padding:4px 10px; border-radius:5px; font-family:var(--mono); font-size:9px;
+  padding:8px 14px; border-radius:7px; font-family:var(--mono); font-size:11px;
   border:1px solid var(--border2); background:var(--card2); color:var(--text2);
-  cursor:pointer; transition:all .15s;
+  cursor:pointer; transition:all .15s; min-height:36px;
 }
 .admin-action-btn:hover { background:var(--card3); }
 .admin-action-btn.danger { border-color:#FF456030; color:var(--red); background:var(--red-d); }
@@ -1290,6 +1551,7 @@ body::after {
 .vault-doc-icon.cert { background:var(--amber-d); }
 
 .vault-doc-info { flex:1; min-width:0; }
+.vault-doc-actions { display:flex; gap:6px; flex-shrink:0; }
 .vault-doc-name { font-family:var(--body); font-size:13px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .vault-doc-meta { font-family:var(--mono); font-size:10px; color:var(--text3); margin-top:2px; }
 .vault-doc-tags { display:flex; gap:5px; margin-top:6px; flex-wrap:wrap; }
@@ -1912,7 +2174,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
             <label class="form-label">Password</label>
             <div class="form-input-wrap">
               <input class="form-input" type="password" id="si-pass" placeholder="••••••••" autocomplete="current-password" style="padding-right:40px">
-              <span class="form-input-icon" onclick="togglePwd('si-pass', this)">👁</span>
+              <span class="form-input-icon" onclick="togglePwd('si-pass', this)">◉</span>
             </div>
           </div>
           <button class="btn-login" id="signinBtn" onclick="doSignIn()">
@@ -1969,36 +2231,71 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
     </div>
 
     <!-- DEV HELPER: Quick jump buttons (remove in production) -->
-    <!-- Test Credentials -->
-    <div style="background:#0A1220;border:1px solid #1E3050;border-radius:10px;padding:14px 16px;margin-top:16px">
-      <div style="font-family:var(--mono);font-size:9px;color:var(--amber);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px">🧪 Test Credentials</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
-        <div style="background:#050A14;border:1px solid #1A2840;border-radius:7px;padding:10px">
-          <div style="font-family:var(--mono);font-size:8px;color:var(--blue);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">👤 Stakeholder</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text2)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4c393f293e0c2d253e3b2d353f6238293f38">[email&#160;protected]</a></div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text3)">Fly@ways2026!</div>
-        </div>
-        <div style="background:#050A14;border:1px solid #1A2840;border-radius:7px;padding:10px">
-          <div style="font-family:var(--mono);font-size:8px;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">🔧 MRO Provider</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text2)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3aeb1ac83a2aab1b4a2bab0edb7a6b0b7">[email&#160;protected]</a></div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text3)">MR0@ways2026!</div>
-        </div>
-        <div style="background:#050A14;border:1px solid #1A2840;border-radius:7px;padding:10px;grid-column:1/-1;display:flex;gap:14px;align-items:center">
-          <div><div style="font-family:var(--mono);font-size:8px;color:var(--amber);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">⚡ Admin</div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text2)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7011141d191e30111902071109035e04150304">[email&#160;protected]</a></div>
-          <div style="font-family:var(--mono);font-size:10px;color:var(--text3)">Adm!nW@ys2026</div></div>
-          <div style="font-family:var(--mono);font-size:9px;color:var(--text3);line-height:1.5">Works in sim mode now.<br>Firebase auth activates<br>with real config.</div>
-        </div>
+    <!-- Quick Login -->
+    <div style="margin-top:20px">
+
+      <!-- One-tap login buttons -->
+      <div style="font-size:11px;font-weight:600;color:var(--text3);text-align:center;margin-bottom:10px;letter-spacing:.06em;text-transform:uppercase">— Dev Quick Login —</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+
+        <button onclick="quickLogin('user@airways.test','Fly@ways2026!')"
+          style="width:100%;padding:13px 16px;border-radius:10px;background:var(--navy,#1B3A6B);border:none;color:#fff;font-family:var(--font,sans-serif);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:12px;transition:opacity .13s"
+          onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+          <span style="font-size:22px">👤</span>
+          <div style="text-align:left;flex:1">
+            <div>Stakeholder / Owner</div>
+            <div style="font-size:11px;opacity:.65;font-weight:400;margin-top:1px">Capt. Gary Johnson · Johnson Aviation LLC</div>
+          </div>
+          <span style="font-size:18px;opacity:.5">→</span>
+        </button>
+
+        <button onclick="quickLogin('mro@airways.test','MR0@ways2026!')"
+          style="width:100%;padding:13px 16px;border-radius:10px;background:#16A34A;border:none;color:#fff;font-family:var(--font,sans-serif);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:12px;transition:opacity .13s"
+          onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+          <span style="font-size:22px">🔧</span>
+          <div style="text-align:left;flex:1">
+            <div>MRO Provider</div>
+            <div style="font-size:11px;opacity:.65;font-weight:400;margin-top:1px">StandardAero VNY · Inventory · Work Orders</div>
+          </div>
+          <span style="font-size:18px;opacity:.5">→</span>
+        </button>
+
+        <button onclick="quickLogin('admin@airways.test','Adm!nW@ys2026')"
+          style="width:100%;padding:13px 16px;border-radius:10px;background:var(--orange,#E8521A);border:none;color:#fff;font-family:var(--font,sans-serif);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:12px;transition:opacity .13s"
+          onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+          <span style="font-size:22px">⚡</span>
+          <div style="text-align:left;flex:1">
+            <div>Admin Panel</div>
+            <div style="font-size:11px;opacity:.65;font-weight:400;margin-top:1px">Firebase config · User management · All data</div>
+          </div>
+          <span style="font-size:18px;opacity:.5">→</span>
+        </button>
       </div>
-      <div style="font-family:var(--mono);font-size:8px;color:var(--text3);text-align:center">or jump directly →</div>
+
+      <!-- Credentials reference (collapsible) -->
+      <details style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+        <summary style="padding:10px 14px;font-size:11px;font-weight:600;color:var(--text3);cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;background:var(--card2)">
+          <span>🔑</span> View test credentials
+          <span style="margin-left:auto;font-size:10px">▾</span>
+        </summary>
+        <div style="padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--bg);border-radius:6px">
+            <span style="color:var(--text3)">👤 Stakeholder</span>
+            <span style="font-family:monospace;color:var(--text2)">user@airways.test &nbsp;·&nbsp; Fly@ways2026!</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--bg);border-radius:6px">
+            <span style="color:var(--text3)">🔧 MRO</span>
+            <span style="font-family:monospace;color:var(--text2)">mro@airways.test &nbsp;·&nbsp; MR0@ways2026!</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--bg);border-radius:6px">
+            <span style="color:var(--text3)">⚡ Admin</span>
+            <span style="font-family:monospace;color:var(--text2)">admin@airways.test &nbsp;·&nbsp; Adm!nW@ys2026</span>
+          </div>
+          <div style="font-size:10px;color:var(--text3);text-align:center;margin-top:2px">Sim mode only — no Firebase needed to test</div>
+        </div>
+      </details>
+
     </div>
-    <div style="margin-top:12px;text-align:center;opacity:.5">
-      <span style="font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em">DEV PREVIEW: </span>
-      <button onclick="devLogin('t1')" style="font-family:var(--mono);font-size:10px;color:var(--blue);background:none;border:1px solid var(--blue-g);border-radius:5px;padding:3px 10px;margin:0 4px;cursor:pointer">Type 1 View</button>
-      <button onclick="devLogin('t2')" style="font-family:var(--mono);font-size:10px;color:var(--green);background:none;border:1px solid #00D68F30;border-radius:5px;padding:3px 10px;cursor:pointer">Type 2 View</button>
-    </div>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════════════════
      VIEW: TYPE 1 — STAKEHOLDER
@@ -3720,7 +4017,16 @@ if (auth) {
 }
 
 // ── Sign In ───────────────────────────────────
-window.doSignIn = async function() {
+window.
+window.quickLogin = function(email, pass) {
+  const emailEl = document.getElementById('si-email');
+  const passEl  = document.getElementById('si-pass');
+  if (emailEl) emailEl.value = email;
+  if (passEl)  passEl.value  = pass;
+  doSignIn();
+};
+
+doSignIn = async function() {
   const email = document.getElementById('si-email').value.trim();
   const pass  = document.getElementById('si-pass').value;
   const btn   = document.getElementById('signinBtn');
@@ -3892,10 +4198,10 @@ window.toggleTheme = function() {
   const html = document.documentElement;
   const isDark = html.getAttribute('data-theme') === 'dark';
   html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  localStorage.setItem('aw-theme', isDark ? 'light' : 'dark');
+  localStorage.setItem('aw-theme-user-set', isDark ? 'light' : 'dark');
 };
-// Restore saved theme
-const savedTheme = localStorage.getItem('aw-theme');
+// Restore saved theme (only if user explicitly toggled it)
+const savedTheme = localStorage.getItem('aw-theme-user-set');
 if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
 
 // ── Login tab switch ──────────────────────────
@@ -3911,7 +4217,7 @@ window.switchLoginTab = function(tab) {
 window.togglePwd = function(id, btn) {
   const inp = document.getElementById(id);
   inp.type = inp.type === 'password' ? 'text' : 'password';
-  btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+  btn.textContent = inp.type === 'password' ? '◉' : '◎';
 };
 
 // ── Type 1 navigation ────────────────────────
@@ -5640,33 +5946,164 @@ function renderPipeline(statusId, compact) {
   }).join('');
 }
 
-function renderReqCard(req, viewMode) {
-  const s    = getStatus(req.status);
-  const sIdx = getStatusIndex(req.status);
-  const urgClass = req.priority === 'high' ? 'req-urgent' :
-                   req.status === 'quoted'  ? 'req-pending' :
-                   req.status === 'complete'? 'req-done' : 'req-active';
+// ── NEW large progress track (used in cards) ──────────────────
+function renderProgressTrack(statusId) {
+  const curIdx = getStatusIndex(statusId);
+  const pct    = Math.round((curIdx / (REQUEST_STATUSES.length - 1)) * 100);
+  const stages = REQUEST_STATUSES.map((s, i) => {
+    const done   = i < curIdx;
+    const active = i === curIdx;
+    const cls    = done ? 'done' : active ? 'active' : 'skip';
+    return `<div class="rc-stage ${cls}">
+      <div class="rc-stage-dot">${done ? '✓' : s.icon}</div>
+      <div class="rc-stage-label">${s.label.split(' ')[0]}</div>
+    </div>`;
+  }).join('');
+  const fillPct = curIdx === 0 ? 0 : Math.round((curIdx / (REQUEST_STATUSES.length - 1)) * 96);
+  return `<div class="rc-progress-track">
+    <div class="rc-progress-fill" style="width:${fillPct}%"></div>
+    ${stages}
+  </div>
+  <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:2px">
+    <span>${REQUEST_STATUSES[curIdx]?.desc || ''}</span>
+    <span style="font-weight:600;color:var(--text2)">${curIdx + 1} of ${REQUEST_STATUSES.length}</span>
+  </div>`;
+}
 
-  return `<div class="req-card ${urgClass}" onclick="openReqDetail('${req.id}','${viewMode}')">
-    <div class="req-header">
-      <div class="req-id">${req.id}</div>
-      <div class="req-info">
-        <div class="req-title">${req.service_type}</div>
-        <div class="req-meta">${req.reg} · ${req.model} · ${viewMode === 'mro' ? req.owner_name : req.mro_name}</div>
-        <div class="req-badges">
-          <span class="pill ${s.color === 'green' ? 'complete' : s.color === 'amber' ? 'scheduled' : s.color === 'red' ? 'grounded' : 'in-progress'}">${s.label}</span>
-          <span class="pill ${req.priority === 'high' ? 'grounded' : req.priority === 'medium' ? 'scheduled' : 'operational'}">${req.priority.toUpperCase()}</span>
-          ${req.status === 'quoted' && viewMode === 'stakeholder' ? '<span class="pill scheduled" style="animation:pulse 1.5s infinite">⚡ Action Required</span>' : ''}
+function renderReqCard(req, viewMode) {
+  const s      = getStatus(req.status);
+  const sIdx   = getStatusIndex(req.status);
+  const isHigh = req.priority === 'high';
+  const urgClass = isHigh ? 'req-urgent' :
+                   req.status === 'quoted'   ? 'req-pending' :
+                   req.status === 'complete' ? 'req-done'    : 'req-active';
+
+  // Priority pill
+  const priColor = isHigh ? 'background:var(--red-d);color:var(--red);border:1px solid #FF456030'
+                 : req.priority === 'medium' ? 'background:var(--amber-d);color:var(--amber);border:1px solid #FFB83030'
+                 : 'background:var(--card2);color:var(--text3);border:1px solid var(--border2)';
+  const priPill  = `<span style="font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;${priColor}">${req.priority.toUpperCase()}</span>`;
+
+  // Status pill
+  const stColor = s.color === 'green' ? 'background:var(--green-d);color:var(--green);border:1px solid #00D68F30'
+                : s.color === 'amber' ? 'background:var(--amber-d);color:var(--amber);border:1px solid #FFB83030'
+                : 'background:var(--blue-d);color:var(--blue);border:1px solid var(--blue-g)';
+  const stPill   = `<span style="font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;${stColor}">${s.icon} ${s.label}</span>`;
+
+  // ── Status-specific content block ─────────────────────────
+  let statusContent = '';
+
+  if (req.status === 'quoted' && viewMode === 'stakeholder') {
+    statusContent = `<div class="rc-status-content action">
+      <div class="rc-sc-label action">⚡ Quote Ready — Action Required</div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:2px">from ${req.mro_name}</div>
+          <div class="rc-quote-total">$${req.quote.total.toLocaleString()}</div>
+          <div style="font-size:11px;color:var(--text3)">Est. ${req.quote.duration}</div>
+        </div>
+        <div style="display:flex;gap:7px;margin-left:auto">
+          <button class="rc-action-btn warn" onclick="event.stopPropagation();openReqDetail('${req.id}','${viewMode}')">View Details</button>
+          <button class="rc-action-btn success" onclick="event.stopPropagation();acceptQuote('${req.id}')">✓ Accept</button>
         </div>
       </div>
+    </div>`;
+  } else if (req.status === 'in_progress') {
+    // Calculate a rough progress pct based on time (simulated)
+    const woPct = 58;
+    const radius = 18, circ = 2 * Math.PI * radius;
+    const offset = circ - (woPct / 100) * circ;
+    statusContent = `<div class="rc-status-content progress">
+      <div class="rc-sc-label progress">🔧 Work In Progress</div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="rc-pct-ring">
+          <svg width="48" height="48" viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="${radius}" fill="none" stroke="var(--border2)" stroke-width="4"/>
+            <circle cx="24" cy="24" r="${radius}" fill="none" stroke="var(--blue)" stroke-width="4"
+              stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${offset.toFixed(1)}"
+              stroke-linecap="round"/>
+          </svg>
+          <div class="rc-pct-val">${woPct}%</div>
+        </div>
+        <div style="flex:1">
+          <div class="rc-work-bar"><div class="rc-work-fill" style="width:${woPct}%"></div></div>
+          <div style="font-size:11px;color:var(--blue);margin-top:3px">Technician: ${req.tech_name || 'Assigned'}</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:1px">${req.mro_name} · Started ${req.start_date || req.pref_date}</div>
+        </div>
+      </div>
+    </div>`;
+  } else if (req.status === 'ready') {
+    statusContent = `<div class="rc-status-content done">
+      <div class="rc-sc-label done">✈ Ready for Pickup — Return to Service Issued</div>
+      <div style="font-size:12px;color:var(--green)">Your aircraft is airworthy and ready at ${req.mro_name}. All service records are in your PlaneFax™ logbook.</div>
+    </div>`;
+  } else if (req.status === 'complete') {
+    statusContent = `<div class="rc-status-content done">
+      <div class="rc-sc-label done">🏁 Service Complete</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:12px;color:var(--green)">${req.service_type} completed by ${req.mro_name}</div>
+        ${req.quote ? `<div style="font-size:18px;font-weight:800;color:var(--green)">$${req.quote.total.toLocaleString()}</div>` : ''}
+      </div>
+    </div>`;
+  } else if (req.status === 'confirmed' || req.status === 'parts_order') {
+    statusContent = `<div class="rc-status-content progress">
+      <div class="rc-sc-label progress">${s.icon} ${s.label}</div>
+      <div style="font-size:12px;color:var(--blue)">${s.desc} · ${req.mro_name}</div>
+      ${req.quote ? `<div style="font-size:11px;color:var(--text3);margin-top:3px">Confirmed: $${req.quote.total.toLocaleString()} · Est. start ${req.quote.start_date || req.pref_date}</div>` : ''}
+    </div>`;
+  }
+
+  // Footer actions
+  let footerRight = `<button class="rc-action-btn ghost" onclick="event.stopPropagation();openReqDetail('${req.id}','${viewMode}')">View Details →</button>`;
+  if (viewMode === 'mro') {
+    if (['submitted','in_review','confirmed','parts_order'].includes(req.status)) {
+      footerRight = `<button class="rc-action-btn primary" onclick="event.stopPropagation();openReqDetail('${req.id}','mro')">Manage →</button>`;
+    }
+    if (req.status === 'in_progress') {
+      footerRight = `
+        <button class="rc-action-btn ghost" onclick="event.stopPropagation();openReqDetail('${req.id}','mro')">View</button>
+        <button class="rc-action-btn success" onclick="event.stopPropagation();openCompletionForm('${req.id}')">📔 Complete + PlaneFax™</button>`;
+    }
+  }
+
+  return `<div class="req-card ${urgClass}">
+    <!-- Header -->
+    <div class="rc-header" onclick="openReqDetail('${req.id}','${viewMode}')">
+      <div class="rc-aircraft-badge">
+        <div class="rc-reg">${req.reg}</div>
+        <div class="rc-model">${req.model.split(' ').slice(-2).join(' ')}</div>
+      </div>
+      <div class="rc-main">
+        <div class="rc-service">${req.service_type}</div>
+        <div class="rc-sub">${viewMode === 'mro' ? req.owner_name : req.mro_name}</div>
+        <div class="rc-badges">
+          ${stPill}
+          ${priPill}
+          ${req.status === 'quoted' && viewMode === 'stakeholder' ? `<span style="font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--amber-d);color:var(--amber);border:1px solid #FFB83030;animation:pulse 1.5s infinite">⚡ Action Required</span>` : ''}
+        </div>
+      </div>
+      <div class="rc-right">
+        <div class="rc-id">${req.id}</div>
+        <div class="rc-date">📅 ${req.pref_date}</div>
+      </div>
     </div>
-    <div style="padding:0 16px 12px">
-      <div class="pipeline-wrap" style="margin-bottom:0">${renderPipeline(req.status, true)}</div>
+
+    <!-- Progress track -->
+    <div class="rc-progress" onclick="openReqDetail('${req.id}','${viewMode}')">
+      ${renderProgressTrack(req.status)}
     </div>
-    <div class="req-footer">
-      <div class="req-footer-meta">Submitted: <span>${new Date(req.submitted).toLocaleDateString()}</span></div>
-      ${req.quote ? `<div class="req-footer-meta">Quote: <span style="color:var(--blue)">$${req.quote.total.toLocaleString()}</span></div>` : ''}
-      <div class="req-footer-meta">Pref. Date: <span>${req.pref_date}</span></div>
+
+    <!-- Status-specific content -->
+    ${statusContent}
+
+    <!-- Footer -->
+    <div class="rc-footer">
+      <div class="rc-footer-meta">📤 ${new Date(req.submitted).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</div>
+      ${req.quote ? `<div class="rc-footer-meta">💰 <span style="color:var(--blue);font-weight:600">$${req.quote.total.toLocaleString()}</span></div>` : ''}
+      <div class="rc-footer-meta">Stage ${getStatusIndex(req.status)+1}/8</div>
+      <div style="margin-left:auto;display:flex;gap:7px">
+        ${footerRight}
+      </div>
     </div>
   </div>`;
 }
@@ -7149,10 +7586,10 @@ function renderVault() {
         </div>
       </div>
       <div class="vault-doc-size">${d.size}</div>
-      <div class="vault-doc-actions">
-        <button class="admin-action-btn" onclick="showToast('Opening ${d.name}','info')">View</button>
+      <div class="vault-doc-actions" onclick="event.stopPropagation()">
+        <button class="admin-action-btn" onclick="showToast('Opening ${d.name}','info')">👁 View</button>
         <button class="admin-action-btn primary" onclick="showToast('Sharing ${d.name}','success')">Share</button>
-        <button class="admin-action-btn" onclick="showToast('Downloading ${d.name}','info')">↓</button>
+        <button class="admin-action-btn" onclick="showToast('Downloading ${d.name}','info')">⬇ Download</button>
       </div>
     </div>`).join('') :
     '<div class="empty-state"><div class="empty-icon">📁</div><div class="empty-title">No documents found</div><div class="empty-sub">Upload documents using the button above</div></div>';
