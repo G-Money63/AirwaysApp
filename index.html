@@ -110,6 +110,7 @@ body::after {
    ANIMATIONS
 ═══════════════════════════════════════════ */
 @keyframes fadeIn    { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@-webkit-keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 @keyframes fadeInFast{ from { opacity:0; } to { opacity:1; } }
 @keyframes slideUp   { from { transform:translateY(100%); } to { transform:translateY(0); } }
 @keyframes spin      { to { transform:rotate(360deg); } }
@@ -121,7 +122,10 @@ body::after {
 .pulse-dot   { animation: pulse 1.4s ease infinite; }
 
 /* Stagger children */
-.stagger > * { animation: fadeIn .4s cubic-bezier(.4,0,.2,1) both; }
+.stagger > * {
+  animation: fadeIn .4s cubic-bezier(.4,0,.2,1) both;
+  -webkit-animation: fadeIn .4s cubic-bezier(.4,0,.2,1) both;
+}
 .stagger > *:nth-child(1) { animation-delay:.05s }
 .stagger > *:nth-child(2) { animation-delay:.10s }
 .stagger > *:nth-child(3) { animation-delay:.15s }
@@ -4131,22 +4135,43 @@ function friendlyError(code) {
 
 // ── showView — defined here so module scope can call it directly ──────
 function showView(id) {
+  // Hide all views
   document.querySelectorAll('.view').forEach(function(v) {
     v.classList.remove('active');
-    v.style.display = 'none';          // belt + suspenders
+    v.style.display = 'none';
   });
+
   var el = document.getElementById('view-' + id);
   if (!el) return;
-  el.classList.add('active');
-  el.style.display = 'flex';           // force display regardless of CSS class timing
 
-  // Force-restart stagger animations (Safari iOS fix — 
-  // animations on display:none elements don't replay automatically)
-  el.querySelectorAll('.stagger > *, .stagger').forEach(function(child) {
-    child.style.animation = 'none';
-    child.offsetHeight;                // trigger reflow
-    child.style.animation = '';
-  });
+  // Show target view
+  el.classList.add('active');
+  el.style.display = 'flex';
+
+  // ── SAFARI iOS FIX ──────────────────────────────────────────────
+  // CSS fill-mode:both keeps stagger children at opacity:0 (the 'from' 
+  // keyframe state) when a display:none parent becomes visible on Safari iOS.
+  // The animation simply does not restart. Setting animation='none' then ''
+  // does NOT reliably fix this on Safari -- it just re-applies the fill-mode.
+  //
+  // CORRECT FIX: immediately override opacity/transform with inline styles,
+  // which beat CSS specificity including animation fill-mode. Then clear the 
+  // override after 1.2s. By then all stagger animations have completed and  
+  // fill-mode:both keeps them at the 'to' state (opacity:1) permanently.
+  // Clearing our inline override causes zero visual change. ✓
+  var kids = el.querySelectorAll('.stagger > *');
+  if (kids.length) {
+    kids.forEach(function(c) {
+      c.style.opacity = '1';
+      c.style.transform = 'translateY(0)';
+    });
+    setTimeout(function() {
+      kids.forEach(function(c) {
+        c.style.opacity = '';
+        c.style.transform = '';
+      });
+    }, 1200);
+  }
 }
 
 
