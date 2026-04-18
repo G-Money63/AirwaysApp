@@ -5799,10 +5799,10 @@ window.renderWarrantyBadges = function() {
   });
 };
 
-// PlaneFax warranty section renderer
+// PlaneFax warranty section renderer — compact:true = badge pills only, not full card list
 window.renderPlaneFaxWarranties = function(reg) {
   var el = document.getElementById('pf-warranty-' + reg);
-  if (el && window.renderWarranties) renderWarranties(reg, 'pf-warranty-' + reg, false);
+  if (el && window.renderWarranties) renderWarranties(reg, 'pf-warranty-' + reg, true);
 };
 </script>
 
@@ -9840,18 +9840,28 @@ window.saveWarranty = function() {
   }
 
   closeModal('modalWarrantyEdit');
-  // Re-render wherever warranties are shown
-  var containers = ['warranty-N847GR','warranty-N203KV','warranty-N119TF',
-                    'pf-warranty-N847GR','pf-warranty-N203KV','pf-warranty-N119TF'];
-  containers.forEach(function(id) {
-    if (document.getElementById(id)) {
-      var r = id.replace('warranty-','').replace('pf-warranty-','');
-      var compact = id.startsWith('pf-');
-      renderWarranties(r, id, compact);
-    }
+
+  // Re-render the active warranty display containers using real DOM IDs
+  // T1 warranties page: warranty-full-display (re-render whichever aircraft is active)
+  var t1Display = document.getElementById('warranty-full-display');
+  if (t1Display) {
+    var activeBtn = document.querySelector('#wac-n847.active, #wac-n203.active, #wac-n119.active');
+    var activeReg = activeBtn ? activeBtn.id.replace('wac-n847','N847GR').replace('wac-n203','N203KV').replace('wac-n119','N119TF') : reg;
+    renderWarranties(activeReg, 'warranty-full-display', false);
+  }
+  // T2 warranties page: t2-warranty-display
+  var t2Display = document.getElementById('t2-warranty-display');
+  if (t2Display) {
+    var activeT2Btn = document.querySelector('#t2wac-n847.active, #t2wac-n203.active, #t2wac-n119.active');
+    var activeT2Reg = activeT2Btn ? activeT2Btn.id.replace('t2wac-n847','N847GR').replace('t2wac-n203','N203KV').replace('t2wac-n119','N119TF') : reg;
+    renderWarranties(activeT2Reg, 't2-warranty-display', false);
+  }
+  // PlaneFax warranty badges (compact) — only if those elements exist in the rendered logbook
+  ['N847GR','N203KV','N119TF'].forEach(function(r) {
+    var pfEl = document.getElementById('pf-warranty-' + r);
+    if (pfEl) renderWarranties(r, 'pf-warranty-' + r, true);
   });
-  // Update dashboard alerts
-  if (window.renderDashboardAlerts) renderDashboardAlerts();
+
   if (window.showToast) showToast('Warranty updated', 'success');
 };
 
