@@ -82,7 +82,7 @@ DOCTYPE html>
 
   --text:    #E8F0FA;
   --text2:   #8AAAC8;
-  --text3:   #4A6480;
+  --text3:   #7890A8;
 }
 
 /* ═══════════════════════════════════════════
@@ -222,9 +222,9 @@ body::after {
   text-transform: uppercase; transition: all .15s;
 }
 .login-tab.active {
-  background: var(--blue-d);
-  color: var(--blue);
-  border: 1px solid var(--blue-g);
+  background: var(--blue);
+  color: #fff;
+  border: 1px solid transparent;
 }
 
 .form-group { margin-bottom: 16px; }
@@ -476,9 +476,7 @@ body::after {
 .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
 .btn-secondary {
   background: var(--card2); border: 1px solid var(--border2);
-  color: var(--text2); font-family: var(--mono); font-size: 11px;
-  font-weight: 500; text-transform: none; letter-spacing: .04em;
-  padding: 8px 14px;
+  color: var(--text2);
 }
 .btn-secondary:hover { background: var(--card3); color: var(--text); }
 .btn-danger { background: var(--red-d); border: 1px solid #FF456030; color: var(--red); font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: none; }
@@ -730,7 +728,7 @@ body::after {
   background: rgba(0,0,0,.7); backdrop-filter: blur(8px);
   display: flex; align-items: flex-end; justify-content: center;
 }
-.modal-bg.hidden { display: none; }
+.modal-bg.hidden { display: none !important; }
 .modal-sheet {
   width: 100%; max-width: 560px;
   background: var(--card); border: 1px solid var(--border2);
@@ -803,8 +801,8 @@ button, .btn, .nav-item, .rc-action-btn, .admin-action-btn,
   /* ── LAYOUT ── */
   .page { padding: 12px; }
   .page-hdr { flex-direction: column; gap: 10px; align-items: flex-start; }
-  .page-actions { width: 100%; display: flex; gap: 8px; flex-wrap: wrap; }
-  .page-actions .btn { flex: 1; justify-content: center; padding: 10px; font-size: 13px; }
+  .page-actions { width: 100%; display: flex; gap: 8px; flex-wrap: nowrap; }
+  .page-actions .btn { flex: 1; min-width: 0; justify-content: center; padding: 10px 8px; font-size: 11px; white-space: nowrap; }
 
   /* ── STAT GRIDS ── */
   .stat-grid.col4 { grid-template-columns: repeat(2,1fr); gap: 8px; }
@@ -2044,7 +2042,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 
 /* ── FIX 3 & 4: Standard pill style — rounded, consistent ── */
 .ps-btn {
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: 99px;
   border: 1px solid var(--border2);
   background: var(--card2);
@@ -2055,6 +2053,9 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   cursor: pointer;
   transition: all .15s;
   white-space: nowrap;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  height: 34px;
+  line-height: 1;
 }
 .ps-btn:hover { border-color: var(--blue); color: var(--blue); }
 .ps-btn.active {
@@ -2065,7 +2066,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 
 /* ── FIX: Inventory tab pills — same as ps-btn ── */
 .inv-tab {
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: 99px;
   border: 1px solid var(--border2);
   background: var(--card2);
@@ -2075,7 +2076,10 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   font-weight: 600;
   cursor: pointer;
   transition: all .15s;
-  display: inline-flex; align-items: center; gap: 5px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  white-space: nowrap;
+  height: 34px;
+  line-height: 1;
 }
 .inv-tab:hover { border-color: var(--blue); color: var(--blue); }
 .inv-tab.active { background: var(--blue-d); border-color: var(--blue); color: var(--blue); }
@@ -2147,7 +2151,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 .nav-item { color: rgba(255,255,255,.75) !important; border-radius: 8px; margin: 1px 8px; }
 .nav-item:hover { background: rgba(255,255,255,.12) !important; color: #fff !important; }
 .nav-item.active { background: rgba(255,255,255,.18) !important; color: #fff !important; font-weight: 600; }
-.nav-badge { background: #E8521A; color: #fff; }
+.nav-badge { background: #C2410C; color: #fff; }
 .sb-user-name { color: #fff !important; }
 .sb-user-sub  { color: rgba(255,255,255,.55) !important; }
 .sb-ctrl-btn  { color: rgba(255,255,255,.6) !important; border-color: rgba(255,255,255,.2) !important; }
@@ -2228,7 +2232,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 .pill.in-progress  { background: #FEF9C3; color: #A16207; border-color: #FDE04720 !important; }
 .pill.pending      { background: #FFF7ED; color: #C2410C; border-color: #FED7AA20 !important; }
 .pill.complete     { background: #DCFCE7; color: #15803D; border-color: #BBF7D020 !important; }
-.pill.grounded     { background: #FEE2E2; color: #DC2626; border-color: #FECACA20 !important; }
+.pill.grounded     { background: #FEE2E2; color: #991B1B; border-color: #FECACA20 !important; }
 
 /* Work order cards — match their Kanban card style */
 .rc-header { border-radius: 12px 12px 0 0; }
@@ -2243,6 +2247,9 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 .form-input:focus { border-color: #1B3A6B; box-shadow: 0 0 0 3px rgba(27,58,107,.12); }
 .btn-login { background: #1B3A6B; }
 .btn-login:hover { background: #15306B; }
+/* Tagline and security text sit on the dark navy gradient — must be light */
+#view-login .login-tagline  { color: rgba(255,255,255,.80) !important; }
+#view-login .login-security { color: rgba(255,255,255,.75) !important; }
 
 /* Quick login buttons — update to Airways navy */
 .ql-stakeholder-btn { background: #1B3A6B !important; }
@@ -2280,7 +2287,7 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 .sidebar .sb-user-name   { color: #ffffff !important; font-weight: 600; }
 .sidebar .sb-user-sub    { color: rgba(255,255,255,.6) !important; }
 .sidebar .sb-role-badge  { color: rgba(255,255,255,.9) !important; }
-.sidebar .nav-badge      { background: #E8521A !important; color: #fff !important; 
+.sidebar .nav-badge      { background: #C2410C !important; color: #fff !important; 
                            font-weight: 800 !important; }
 /* Sidebar bottom controls */
 .sidebar .sb-ctrl-btn { 
@@ -2295,22 +2302,28 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
 }
 
 /* ── CONTENT AREA TEXT CONTRAST FIXES ──────────────────────────────────
-   var(--text3) in light mode is #7090B0 — too light for sub-labels on
-   white cards. Darken to a more readable blue-grey.
+   var(--text3) in light mode — darkened to #4E6A84 for 5.17:1 on white.
+   var(--text3) in dark mode  — lightened to #7890A8 for 5.28:1 on dark card.
+   Semantic colors darkened so color:var(--X) on var(--X-d) backgrounds
+   passes WCAG AA in light mode (all verified ≥ 4.5:1).
 ═══════════════════════════════════════════════════════════════════════ */
 :root {
-  --text3: #5A7898;  /* was #7090B0 — darker for white card readability */
+  --text3: #4E6A84;  /* 5.17:1 on white — WCAG AA pass */
+  --blue:  #1558AD;  /* 6.93:1 on white; 6.02:1 on blue-d bg */
+  --red:   #991B1B;  /* 8.31:1 on white; 7.10:1 on red-d bg  */
+  --amber: #92400E;  /* 7.09:1 on white; 6.36:1 on amber-d bg */
+  --green: #166534;  /* 7.13:1 on white; 6.34:1 on green-d bg */
 }
-.page-sub      { color: #5A7898 !important; }
-.stat-label    { color: #5A7898 !important; font-weight: 600; }
+.page-sub      { color: #4E6A84 !important; }
+.stat-label    { color: #4E6A84 !important; font-weight: 600; }
 .stat-delta    { font-size: 11px !important; font-weight: 600; }
-.ac-detail     { color: #5A7898 !important; }
-.ac-metric-lbl { color: #5A7898 !important; }
-.doc-meta      { color: #5A7898 !important; }
-.alert-sub     { color: #5A7898 !important; }
-.topbar-breadcrumb { color: #5A7898 !important; }
-.mro-type      { color: #5A7898 !important; }
-.mro-phone     { color: #5A7898 !important; }
+.ac-detail     { color: #4E6A84 !important; }
+.ac-metric-lbl { color: #4E6A84 !important; }
+.doc-meta      { color: #4E6A84 !important; }
+.alert-sub     { color: #4E6A84 !important; }
+.topbar-breadcrumb { color: #4E6A84 !important; }
+.mro-type      { color: #4E6A84 !important; }
+.mro-phone     { color: #4E6A84 !important; }
 .section-action { color: var(--blue) !important; font-weight: 600; }
 
 /* Form inputs — text must be dark and readable */
@@ -2414,8 +2427,8 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   .page-hdr    { flex-direction: column !important; gap: 10px !important; margin-bottom: 16px !important; }
   .page-title  { font-size: 22px !important; }
   .page-sub    { font-size: 11px !important; }
-  .page-actions { width: 100% !important; display: flex !important; gap: 8px !important; flex-wrap: wrap !important; }
-  .page-actions .btn { flex: 1; min-width: 120px; justify-content: center; font-size: 12px !important; }
+  .page-actions { width: 100% !important; display: flex !important; gap: 8px !important; flex-wrap: nowrap !important; }
+  .page-actions .btn { flex: 1; min-width: 0; justify-content: center; font-size: 11px !important; padding: 10px 8px !important; white-space: nowrap; }
 
   /* ── Stat grids ──────────────────────────────────────────────────── */
   .stat-grid        { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
@@ -2446,7 +2459,8 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   /* ── Filter pills row ────────────────────────────────────────────── */
   .ps-btn, .inv-tab {
     font-size: 11px !important;
-    padding: 5px 12px !important;
+    padding: 7px 12px !important;
+    height: 34px !important;
   }
 
   /* ── Work order cards ────────────────────────────────────────────── */
@@ -2460,8 +2474,14 @@ input:checked + .toggle-slider::before { transform:translateX(20px); }
   /* ── Invoice generator → stack ───────────────────────────────────── */
   .layout-2col > div:last-child { order: -1; } /* preview on top on mobile */
 
-  /* ── Inventory tabs → 2 per row ─────────────────────────────────── */
-  #t2-page-inventory .inv-tab { flex: 1 1 calc(50% - 4px) !important; justify-content: center; }
+  /* ── Inventory tabs → uniform 2-per-row grid ────────────────────── */
+  #t2-page-inventory .inv-tab {
+    flex: 1 1 calc(50% - 4px) !important;
+    justify-content: center !important;
+    height: 36px !important;
+    font-size: 11px !important;
+    padding: 0 12px !important;
+  }
 
   /* ── Drop zones / upload ─────────────────────────────────────────── */
   .vault-upload-zone { padding: 20px !important; }
@@ -3624,11 +3644,11 @@ div:has(> .cal-grid) {
 
       <!-- Filter tabs -->
       <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
-        <button class="ps-btn active" id="t1req-all"       onclick="filterT1Requests('all',this)"       style="font-size:10px">All</button>
-        <button class="ps-btn"        id="t1req-active"    onclick="filterT1Requests('active',this)"    style="font-size:10px">Active</button>
-        <button class="ps-btn"        id="t1req-quoted"    onclick="filterT1Requests('quoted',this)"    style="font-size:10px">Awaiting Quote</button>
-        <button class="ps-btn"        id="t1req-inprogress" onclick="filterT1Requests('inprogress',this)" style="font-size:10px">In Progress</button>
-        <button class="ps-btn"        id="t1req-complete"  onclick="filterT1Requests('complete',this)"  style="font-size:10px">Complete</button>
+        <button class="ps-btn active" id="t1req-all"       onclick="filterT1Requests('all',this)"      >All</button>
+        <button class="ps-btn"        id="t1req-active"    onclick="filterT1Requests('active',this)"   >Active</button>
+        <button class="ps-btn"        id="t1req-quoted"    onclick="filterT1Requests('quoted',this)"   >Awaiting Quote</button>
+        <button class="ps-btn"        id="t1req-inprogress" onclick="filterT1Requests('inprogress',this)">In Progress</button>
+        <button class="ps-btn"        id="t1req-complete"  onclick="filterT1Requests('complete',this)" >Complete</button>
       </div>
 
       <div id="t1-requests-list"></div>
@@ -3668,10 +3688,10 @@ div:has(> .cal-grid) {
 
       <!-- Filter tabs -->
       <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
-        <button class="ps-btn active" id="inv-all"     onclick="filterInvoices('all',this)"     style="font-size:10px">All</button>
-        <button class="ps-btn"        id="inv-due"     onclick="filterInvoices('due',this)"     style="font-size:10px;color:var(--red)">Outstanding</button>
-        <button class="ps-btn"        id="inv-sent"    onclick="filterInvoices('sent',this)"    style="font-size:10px">Sent</button>
-        <button class="ps-btn"        id="inv-paid"    onclick="filterInvoices('paid',this)"    style="font-size:10px;color:var(--green)">Paid</button>
+        <button class="ps-btn active" id="inv-all"     onclick="filterInvoices('all',this)"    >All</button>
+        <button class="ps-btn"        id="inv-due"     onclick="filterInvoices('due',this)"     style="color:var(--red)">Outstanding</button>
+        <button class="ps-btn"        id="inv-sent"    onclick="filterInvoices('sent',this)"   >Sent</button>
+        <button class="ps-btn"        id="inv-paid"    onclick="filterInvoices('paid',this)"    style="color:var(--green)">Paid</button>
       </div>
 
       <div id="invoices-list"></div>
@@ -3689,7 +3709,7 @@ div:has(> .cal-grid) {
       </div>
 
       <!-- Invoice Type Selector -->
-      <div style="display:flex;gap:8px;margin-bottom:20px">
+      <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
         <button class="inv-tab active" id="invtype-mro" onclick="setInvoiceType('mro',this)">🔧 MRO / Maintenance Invoice</button>
         <button class="inv-tab"        id="invtype-charter" onclick="setInvoiceType('charter',this)">✈ Charter Operations Invoice</button>
       </div>
@@ -3740,7 +3760,7 @@ div:has(> .cal-grid) {
               </div>
               <div>
                 <div style="font-size:10px;color:var(--text3);font-weight:600;margin-bottom:4px">DUE DATE</div>
-                <input class="form-input" id="inv-due" type="date" style="font-size:12px">
+                <input class="form-input" id="inv-due-date" type="date" style="font-size:12px">
               </div>
             </div>
           </div>
@@ -3892,7 +3912,7 @@ div:has(> .cal-grid) {
         <div><div class="page-title">Flight Hours</div>
         <div class="page-sub">Log and track flight time across your fleet</div></div>
         <div class="page-actions">
-          <button class="btn btn-secondary" onclick="openModal('modalLogFlight')">+ Log Hours</button>
+          <button class="btn btn-secondary" onclick="openModal('modalLogHours')">+ Log Hours</button>
         </div>
       </div>
 
@@ -3960,7 +3980,7 @@ div:has(> .cal-grid) {
               <option>Ferry</option>
             </select>
           </div>
-          <button class="btn btn-primary" onclick="logFlight()" style="padding:9px 18px">Log Flight</button>
+          <button class="btn btn-primary" onclick="submitFlightLog()" style="padding:9px 18px">Log Flight</button>
         </div>
       </div>
 
@@ -4159,8 +4179,8 @@ div:has(> .cal-grid) {
         <div><div class="page-title">PlaneFax™ — Digital Maintenance Records</div>
         <div class="page-sub">FAA-compliant maintenance records · Permanent airworthiness archive</div></div>
         <div class="page-actions">
-          <div style="display:flex;gap:8px">
-            <select class="form-input form-select" id="logbook-aircraft-select" onchange="renderLogbook()" style="max-width:200px;padding:8px 12px;font-size:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;width:100%">
+            <select class="form-input form-select" id="logbook-aircraft-select" onchange="renderLogbook()" style="flex:1;min-width:140px;max-width:200px">
               <option value="N847GR">N847GR — Citation CJ4</option>
               <option value="N203KV">N203KV — PA-28 Cherokee</option>
               <option value="N119TF">N119TF — Bonanza G36</option>
@@ -4188,10 +4208,10 @@ div:has(> .cal-grid) {
 
       <!-- Aircraft selector -->
       <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-        <button class="ps-btn active" id="man-ac-all"   onclick="filterManuals('all',this)"   style="font-size:11px">All Aircraft</button>
-        <button class="ps-btn"        id="man-ac-n847"  onclick="filterManuals('N847GR',this)" style="font-size:11px">N847GR</button>
-        <button class="ps-btn"        id="man-ac-n203"  onclick="filterManuals('N203KV',this)" style="font-size:11px">N203KV</button>
-        <button class="ps-btn"        id="man-ac-n119"  onclick="filterManuals('N119TF',this)" style="font-size:11px">N119TF</button>
+        <button class="ps-btn active" id="man-ac-all"   onclick="filterManuals('all',this)"  >All Aircraft</button>
+        <button class="ps-btn"        id="man-ac-n847"  onclick="filterManuals('N847GR',this)">N847GR</button>
+        <button class="ps-btn"        id="man-ac-n203"  onclick="filterManuals('N203KV',this)">N203KV</button>
+        <button class="ps-btn"        id="man-ac-n119"  onclick="filterManuals('N119TF',this)">N119TF</button>
       </div>
 
       <!-- Currency Alert Banner -->
@@ -4511,11 +4531,11 @@ div:has(> .cal-grid) {
 
       <!-- Priority filter -->
       <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
-        <button class="ps-btn active" id="t2wo-all"    onclick="filterT2WO('all',this)"    style="font-size:10px">All</button>
-        <button class="ps-btn"        id="t2wo-high"   onclick="filterT2WO('high',this)"   style="font-size:10px;color:var(--red)">🔴 High</button>
-        <button class="ps-btn"        id="t2wo-quoted" onclick="filterT2WO('quoted',this)" style="font-size:10px">Needs Quoting</button>
-        <button class="ps-btn"        id="t2wo-active" onclick="filterT2WO('active',this)" style="font-size:10px">In Progress</button>
-        <button class="ps-btn"        id="t2wo-ready"  onclick="filterT2WO('ready',this)"  style="font-size:10px;color:var(--green)">Ready Pickup</button>
+        <button class="ps-btn active" id="t2wo-all"    onclick="filterT2WO('all',this)"   >All</button>
+        <button class="ps-btn"        id="t2wo-high"   onclick="filterT2WO('high',this)"   style="color:var(--red)">🔴 High</button>
+        <button class="ps-btn"        id="t2wo-quoted" onclick="filterT2WO('quoted',this)">Needs Quoting</button>
+        <button class="ps-btn"        id="t2wo-active" onclick="filterT2WO('active',this)">In Progress</button>
+        <button class="ps-btn"        id="t2wo-ready"  onclick="filterT2WO('ready',this)"  style="color:var(--green)">Ready Pickup</button>
       </div>
 
       <div id="t2-workorders-list"></div>
@@ -5051,11 +5071,11 @@ div:has(> .cal-grid) {
 
       <!-- Photo categories -->
       <div style="display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap">
-        <button class="ps-btn active" style="font-size:10px">All (12)</button>
-        <button class="ps-btn" style="font-size:10px">Pre-Work (3)</button>
-        <button class="ps-btn" style="font-size:10px">In-Progress (5)</button>
-        <button class="ps-btn" style="font-size:10px">Post-Work (4)</button>
-        <button class="ps-btn" style="font-size:10px">Defects Found (2)</button>
+        <button class="ps-btn active">All (12)</button>
+        <button class="ps-btn">Pre-Work (3)</button>
+        <button class="ps-btn">In-Progress (5)</button>
+        <button class="ps-btn">Post-Work (4)</button>
+        <button class="ps-btn">Defects Found (2)</button>
       </div>
 
       <!-- Photo grid -->
@@ -7075,11 +7095,11 @@ window.AirWaysDB = { AIRPORTS, MRO_PROVIDERS, SIMULATED_STAKEHOLDERS, AIRCRAFT_R
       <div style="margin-bottom:16px">
         <div class="section-hdr">
           <div class="section-title">Communications Log</div>
-          <div style="display:flex;gap:6px">
-            <button class="ps-btn active" id="commsTabAll"    onclick="filterComms('all',this)"   style="font-size:9px;padding:3px 10px">All</button>
-            <button class="ps-btn"        id="commsTabEmail"  onclick="filterComms('email',this)" style="font-size:9px;padding:3px 10px">Email</button>
-            <button class="ps-btn"        id="commsTabPush"   onclick="filterComms('push',this)"  style="font-size:9px;padding:3px 10px">Push</button>
-            <button class="ps-btn"        id="commsTabInapp"  onclick="filterComms('inapp',this)" style="font-size:9px;padding:3px 10px">In-App</button>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="ps-btn active" id="commsTabAll"    onclick="filterComms('all',this)"   >All</button>
+            <button class="ps-btn"        id="commsTabEmail"  onclick="filterComms('email',this)" >Email</button>
+            <button class="ps-btn"        id="commsTabPush"   onclick="filterComms('push',this)"  >Push</button>
+            <button class="ps-btn"        id="commsTabInapp"  onclick="filterComms('inapp',this)" >In-App</button>
           </div>
         </div>
         <div class="comms-log" id="reqCommsLog"></div>
@@ -8822,11 +8842,11 @@ setTimeout(loadSavedConfig, 500);
     <div class="hours-form-grid">
       <div>
         <label class="hours-form-label">Date</label>
-        <input class="hours-form-input" type="date" id="log-date">
+        <input class="hours-form-input" type="date" id="modal-log-date">
       </div>
       <div>
         <label class="hours-form-label">Aircraft</label>
-        <select class="hours-form-input form-select" id="log-aircraft">
+        <select class="hours-form-input form-select" id="modal-log-aircraft">
           <option value="N847GR">N847GR — Citation CJ4</option>
           <option value="N203KV">N203KV — PA-28 Cherokee</option>
           <option value="N119TF">N119TF — Bonanza G36</option>
@@ -8834,11 +8854,11 @@ setTimeout(loadSavedConfig, 500);
       </div>
       <div>
         <label class="hours-form-label">Departure (ICAO)</label>
-        <input class="hours-form-input" id="log-from" placeholder="KVNY">
+        <input class="hours-form-input" id="modal-log-from" placeholder="KVNY">
       </div>
       <div>
         <label class="hours-form-label">Arrival (ICAO)</label>
-        <input class="hours-form-input" id="log-to" placeholder="KLAS">
+        <input class="hours-form-input" id="modal-log-to" placeholder="KLAS">
       </div>
       <div>
         <label class="hours-form-label">Hobbs Out</label>
@@ -8868,6 +8888,11 @@ setTimeout(loadSavedConfig, 500);
   </div>
 </div>
 
+
+
+<!-- Log Flight Hours Modal -->
+
+
 <!-- Change Password Modal -->
 <div class="modal-bg hidden" id="modalChangePassword">
   <div class="modal-sheet">
@@ -8877,15 +8902,15 @@ setTimeout(loadSavedConfig, 500);
     <div class="request-form">
       <div>
         <label class="form-label">Current Password</label>
-        <input class="form-input" type="password" id="pw-current" placeholder="••••••••">
+        <input class="form-input" type="password" id="modal-pw-current" placeholder="••••••••">
       </div>
       <div>
         <label class="form-label">New Password</label>
-        <input class="form-input" type="password" id="pw-new" placeholder="Min. 8 characters">
+        <input class="form-input" type="password" id="modal-pw-new" placeholder="Min. 8 characters">
       </div>
       <div>
         <label class="form-label">Confirm New Password</label>
-        <input class="form-input" type="password" id="pw-confirm" placeholder="Repeat new password">
+        <input class="form-input" type="password" id="modal-pw-confirm" placeholder="Repeat new password">
       </div>
       <div style="display:flex;gap:10px;margin-top:6px">
         <button class="btn btn-secondary" style="flex:1" onclick="closeModal('modalChangePassword')">Cancel</button>
@@ -9124,7 +9149,7 @@ function renderFlightLog() {
 
 window.openLogHoursModal = function() {
   const today = new Date().toISOString().split('T')[0];
-  const el = document.getElementById('log-date'); if (el) el.value = today;
+  const el = document.getElementById('modal-log-date'); if (el) el.value = today;
   openModal('modalLogHours');
 };
 
@@ -9136,10 +9161,10 @@ window.calcFlightTime = function() {
 };
 
 window.submitFlightLog = function() {
-  const aircraft = document.getElementById('log-aircraft')?.value.split(' ')[0] || 'N847GR';
-  const from = document.getElementById('log-from')?.value || 'KVNY';
-  const to   = document.getElementById('log-to')?.value   || 'KLAS';
-  const date = document.getElementById('log-date')?.value || 'Today';
+  const aircraft = document.getElementById('modal-log-aircraft')?.value.split(' ')[0] || 'N847GR';
+  const from = document.getElementById('modal-log-from')?.value || 'KVNY';
+  const to   = document.getElementById('modal-log-to')?.value   || 'KLAS';
+  const date = document.getElementById('modal-log-date')?.value || 'Today';
   const hobbsOut = document.getElementById('log-hobbs-out')?.value || '0';
   const hobbsIn  = document.getElementById('log-hobbs-in')?.value  || '0';
   const dur = document.getElementById('log-duration')?.value || '0';
@@ -9183,13 +9208,15 @@ window.setupMFA = function() {
 window.openChangePassword = function() { openModal('modalChangePassword'); };
 
 window.submitPasswordChange = function() {
-  const cur = document.getElementById('pw-current')?.value;
-  const nw  = document.getElementById('pw-new')?.value;
-  const con = document.getElementById('pw-confirm')?.value;
+  const modalOpen = !document.getElementById('modalChangePassword').classList.contains('hidden');
+  const prefix = modalOpen ? 'modal-' : '';
+  const cur = document.getElementById(prefix + 'pw-current')?.value;
+  const nw  = document.getElementById(prefix + 'pw-new')?.value;
+  const con = document.getElementById(prefix + 'pw-confirm')?.value;
   if (!cur || !nw) { showToast('Fill in all fields', 'error'); return; }
   if (nw !== con)  { showToast('Passwords do not match', 'error'); return; }
   if (nw.length < 8) { showToast('Password must be 8+ characters', 'error'); return; }
-  closeModal('modalChangePassword');
+  if (modalOpen) closeModal('modalChangePassword');
   showToast('Password updated successfully', 'success');
   // In live mode: auth.currentUser.updatePassword(nw)
 };
@@ -9315,7 +9342,7 @@ function renderManualsList() {
 }
 
 // ── AIRWORTHINESS / PLANEFAX ──────────────────────────────────────────
-const AIRWORTHINESS_DATA = {
+window.AIRWORTHINESS_DATA = {
   'N847GR': {
     model:'Cessna Citation CJ4', serial:'525C-0247', year:2018,
     category:'Part 91 — Private', base:'KVNY', status:'airworthy',
@@ -9422,7 +9449,7 @@ window.openPlaneFaxComplete = function(reg) {
 };
 
 // ── LOGBOOK / DIGITAL PLANEFAX RECORD ─────────────────────────────────
-const LOGBOOK_DATA = {
+window.LOGBOOK_DATA = {
   'N847GR': [
     { date:'Mar 1 2026', type:'100-Hour Inspection', shop:'SkyTech MRO', tech:'Mike R.', woNum:'WO-2026-0088',
       signed:true, hours:3800, findings:'Oil filter replaced, spark plugs gapped and re-installed, brake pads checked within limits', attachments:3 },
@@ -9495,7 +9522,7 @@ window.renderLogbook = function() {
 // ══════════════════════════════════════════════════════════════════════
 // WARRANTY TRACKING SYSTEM
 // ══════════════════════════════════════════════════════════════════════
-const WARRANTY_DB = {
+window.WARRANTY_DB = {
   'N847GR': {
     aircraft: 'N847GR',
     model: 'Cessna Citation CJ4',
@@ -9846,10 +9873,11 @@ window.getWarrantyAlerts = function() {
   });
   return alerts;
 };
+
 </script>
 
 <!-- Warranty Edit Modal -->
-<div class="modal-overlay hidden" id="modalWarrantyEdit">
+<div class="modal-bg hidden" id="modalWarrantyEdit">
   <div class="modal" style="max-width:520px;width:90%">
     <div class="modal-header">
       <div class="modal-title" id="we-title">Edit Warranty</div>
@@ -9902,7 +9930,221 @@ window.getWarrantyAlerts = function() {
     </div>
   </div>
 </div>
-</body>
+
+<script>
+// ══════════════════════════════════════════════════════════════════════
+// PLANEFAX™ — PDF EXPORT (accesses window.AIRWORTHINESS_DATA etc.)
+// ══════════════════════════════════════════════════════════════════════
+window.exportLogbook = function() {
+  var regEl = document.getElementById('aw-ac-select') || document.getElementById('logbook-aircraft-select');
+  var reg = (regEl && regEl.value) ? regEl.value : 'N847GR';
+
+  var ac  = window.AIRWORTHINESS_DATA ? window.AIRWORTHINESS_DATA[reg] : null;
+  var lbRaw = window.LOGBOOK_DATA ? window.LOGBOOK_DATA[reg] : null;
+  var lbEntries = lbRaw ? Object.values(lbRaw) : [];
+  var war = window.WARRANTY_DB ? window.WARRANTY_DB[reg] : null;
+
+  if (!ac) { if (window.showToast) showToast('No aircraft data found', 'error'); return; }
+
+  var today = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  var totalHours = lbEntries.length > 0 ? (lbEntries[0].hours || '') : '';
+  var pfPct = ac.planefax ? Math.round((ac.planefax.completed/ac.planefax.total)*100) : 0;
+  var pfColor = pfPct>=100?'#16A34A':pfPct>=70?'#D97706':'#DC2626';
+
+  function statusBadge(color, label) {
+    return '<span style="background:'+color+'18;color:'+color+';padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.06em">'+label+'</span>';
+  }
+
+  var awRows = (ac.items||[]).map(function(item) {
+    var sc = item.status==='ok'?'#16A34A':item.status==='warn'?'#D97706':'#DC2626';
+    var sl = item.status==='ok'?'CURRENT':item.status==='warn'?'DUE SOON':'OVERDUE';
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;font-weight:600;color:#0F1F38">'+item.title+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#3A5474">'+item.due+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#64748B;font-size:11px">'+(item.details||'')+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;text-align:center">'+statusBadge(sc,sl)+'</td></tr>';
+  }).join('');
+
+  var warRows = war ? war.warranties.map(function(w) {
+    var days = Math.ceil((new Date(w.endDate).getTime()-Date.now())/86400000);
+    var sc = days<0?'#DC2626':days<90?'#D97706':'#16A34A';
+    var sl = days<0?'EXPIRED':days<90?'EXPIRING':'ACTIVE';
+    var ti = {airframe:'&#9992;',engine:'&#9881;',avionics:'&#128225;',component:'&#128295;'};
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;font-weight:600;color:#0F1F38">'+(ti[w.type]||'&#128295;')+' '+w.label+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#3A5474">'+w.provider+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#3A5474">'+w.startDate+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:'+sc+';font-weight:600">'+w.endDate+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;text-align:center">'+statusBadge(sc,sl)+'</td></tr>';
+  }).join('') : '<tr><td colspan="5" style="padding:12px;text-align:center;color:#64748B">No warranty data on file</td></tr>';
+
+  var lbRows = lbEntries.map(function(e) {
+    var sc = e.signed?'#16A34A':'#D97706';
+    var sl = e.signed?'&#10003; SIGNED':'&#9203; PENDING';
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#64748B;font-family:monospace;font-size:11px">'+e.date+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;font-weight:600;color:#0F1F38">'+e.type+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#3A5474">'+e.shop+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;color:#3A5474">'+(e.findings||e.notes||'')+'</td><td style="padding:8px 12px;border-bottom:1px solid #E2E8F0;text-align:center;color:'+sc+';font-weight:700;font-size:10px">'+sl+'</td></tr>';
+  }).join('');
+
+  var hoursCell = totalHours ? '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Total Hours</div><div style="font-weight:700;color:#0F1F38;font-size:13px">'+totalHours+' hrs</div></div>' : '';
+
+  var doc = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PlaneFax&#8482; &#8212; '+reg+' &#8212; '+today+'</title>' +
+  '<style>@page{margin:.6in;size:letter}body{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;color:#0F1F38;margin:0;padding:0;font-size:12px;line-height:1.5}' +
+  'h2{font-size:12px;font-weight:700;color:#1B3A6B;margin:16px 0 6px;letter-spacing:.06em;text-transform:uppercase;padding:0 20px}' +
+  'table{width:100%;border-collapse:collapse;margin-bottom:14px}thead tr{background:#1B3A6B}thead th{padding:8px 12px;color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;text-align:left}' +
+  'tr:nth-child(even) td{background:#F8FAFC}</style></head><body>' +
+
+  '<div style="background:#1B3A6B;padding:20px 28px;display:flex;align-items:center;justify-content:space-between">' +
+    '<div><div style="font-size:24px;font-weight:900;color:#fff;letter-spacing:.04em">&#9992; PLANEFAX&#8482;</div>' +
+    '<div style="font-size:9px;color:#CADCFC;margin-top:3px;letter-spacing:.1em">DIGITAL MAINTENANCE RECORD &#8212; AIRWAYS MRO PLATFORM</div></div>' +
+    '<div style="text-align:right"><div style="font-size:22px;font-weight:800;color:#fff;letter-spacing:.08em">'+reg+'</div>' +
+    '<div style="font-size:11px;color:#CADCFC">'+today+'</div></div></div>' +
+
+  '<div style="background:#F1F5FA;padding:12px 20px;border-bottom:3px solid #1B3A6B;display:flex;gap:24px;flex-wrap:wrap;align-items:center">' +
+    '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Aircraft</div><div style="font-weight:700;color:#0F1F38;font-size:13px">'+ac.model+'</div></div>' +
+    '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Serial #</div><div style="font-weight:700">'+ac.serial+'</div></div>' +
+    '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Year</div><div style="font-weight:700">'+ac.year+'</div></div>' +
+    '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Base</div><div style="font-weight:700">'+ac.base+'</div></div>' +
+    '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Category</div><div style="font-weight:700">'+ac.category+'</div></div>' +
+    '<div><div style="font-size:8px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Airworthiness</div><div style="font-weight:700;color:#16A34A;text-transform:uppercase">'+ac.status+'</div></div>' +
+    hoursCell +
+  '</div>' +
+
+  '<div style="padding:12px 20px;background:#fff;border-bottom:1px solid #E2E8F0">' +
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">' +
+      '<div style="font-size:10px;font-weight:700;color:#1B3A6B;text-transform:uppercase;letter-spacing:.08em">PlaneFax&#8482; Completion</div>' +
+      '<div style="font-size:12px;font-weight:800;color:'+pfColor+'">'+pfPct+'% &#8212; '+ac.planefax.completed+'/'+ac.planefax.total+' items signed off</div></div>' +
+    '<div style="background:#E2E8F0;border-radius:4px;height:7px"><div style="background:'+pfColor+';height:7px;border-radius:4px;width:'+pfPct+'%"></div></div></div>' +
+
+  '<h2>Airworthiness &amp; Compliance</h2>' +
+  '<table><thead><tr><th style="width:26%;padding:8px 20px">Requirement</th><th style="width:15%;padding:8px 12px">Due Date</th><th style="padding:8px 12px">Details</th><th style="width:13%;padding:8px 12px;text-align:center">Status</th></tr></thead><tbody>'+awRows+'</tbody></table>' +
+
+  '<h2>Warranty Register</h2>' +
+  '<table><thead><tr><th style="width:26%;padding:8px 20px">Warranty</th><th style="width:22%;padding:8px 12px">Provider</th><th style="width:12%;padding:8px 12px">Start</th><th style="width:12%;padding:8px 12px">Expiry</th><th style="width:11%;padding:8px 12px;text-align:center">Status</th></tr></thead><tbody>'+warRows+'</tbody></table>' +
+
+  '<h2>Maintenance Logbook</h2>' +
+  '<table><thead><tr><th style="width:11%;padding:8px 20px">Date</th><th style="width:18%;padding:8px 12px">Service Type</th><th style="width:18%;padding:8px 12px">Facility</th><th style="padding:8px 12px">Findings / Notes</th><th style="width:11%;padding:8px 12px;text-align:center">Signed</th></tr></thead><tbody>'+lbRows+'</tbody></table>' +
+
+  '<div style="margin:0 20px 16px;padding:16px;background:#F1F5FA;border:1px solid #E2E8F0;border-radius:6px">' +
+    '<div style="font-size:9px;font-weight:700;color:#1B3A6B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px">Signatures &amp; Certification</div>' +
+    '<div style="display:flex;gap:24px"><div style="flex:1"><div style="font-size:9px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:28px">Owner / Authorized Rep</div><div style="border-top:1px solid #0F1F38;padding-top:4px;font-size:9px;color:#64748B">Signature &amp; Date</div></div>' +
+    '<div style="flex:1"><div style="font-size:9px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:28px">A&amp;P / IA &#8212; Certificate #</div><div style="border-top:1px solid #0F1F38;padding-top:4px;font-size:9px;color:#64748B">Cert # &amp; Signature</div></div>' +
+    '<div style="flex:1"><div style="font-size:9px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:28px">MRO / Repair Station #</div><div style="border-top:1px solid #0F1F38;padding-top:4px;font-size:9px;color:#64748B">Station # &amp; Date</div></div></div></div>' +
+
+  '<div style="background:#1B3A6B;padding:8px 20px;display:flex;justify-content:space-between;align-items:center">' +
+    '<div style="color:#CADCFC;font-size:9px;letter-spacing:.05em">PLANEFAX&#8482; &#8212; '+reg+' &#8212; '+today+'</div>' +
+    '<div style="color:#CADCFC;font-size:9px">Generated by AirWays &#183; FOR REFERENCE ONLY &#8212; Not an FAA Document</div></div>' +
+  '</body></html>';
+
+  var win = window.open('', '_blank', 'width=900,height=1100');
+  if (!win) { if (window.showToast) showToast('Allow pop-ups to export PDF', 'error'); return; }
+  win.document.write(doc);
+  win.document.close();
+  win.focus();
+  setTimeout(function() { win.print(); }, 600);
+  if (window.showToast) showToast('PlaneFax\u2122 ready \u2014 choose \u201CSave as PDF\u201D in print dialog', 'success');
+};
+</script>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// PLANEFAX™ — EXPORT PDF
+// Opens a styled print window; user saves as PDF via browser dialog
+// ══════════════════════════════════════════════════════════════════
+window.exportLogbook = function() {
+  var regEl = document.getElementById('aw-ac-select');
+  var reg = (regEl && regEl.value) ? regEl.value : 'N847GR';
+  var ac  = window.AIRWORTHINESS_DATA && window.AIRWORTHINESS_DATA[reg];
+  var war = window.WARRANTY_DB && window.WARRANTY_DB[reg];
+  var lbRaw = window.LOGBOOK_DATA && window.LOGBOOK_DATA[reg];
+  var lbEntries = lbRaw ? Object.values(lbRaw) : [];
+
+  if (!ac) { if (window.showToast) showToast('No aircraft data found', 'error'); return; }
+
+  var today = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  var totalHours = lbEntries.length > 0 ? (lbEntries[0].hours || '') : '';
+  var pfPct = ac.planefax ? Math.round((ac.planefax.completed/ac.planefax.total)*100) : 0;
+  var pfColor = pfPct >= 100 ? '#16A34A' : pfPct >= 70 ? '#D97706' : '#DC2626';
+
+  function badge(color, label) {
+    return '<span style="background:'+color+'20;color:'+color+';padding:2px 9px;border-radius:99px;font-size:9px;font-weight:700;letter-spacing:.06em">'+label+'</span>';
+  }
+  function th(w,txt){ return '<th style="padding:8px '+(w?'20px':'12px')+';color:#fff;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;text-align:left">'+txt+'</th>'; }
+  function td(style,txt){ return '<td style="padding:7px 12px;border-bottom:1px solid #E2E8F0;'+style+'">'+txt+'</td>'; }
+
+  var awRows = (ac.items||[]).map(function(item) {
+    var sc = item.status==='ok'?'#16A34A':item.status==='warn'?'#D97706':'#DC2626';
+    var sl = item.status==='ok'?'CURRENT':item.status==='warn'?'DUE SOON':'OVERDUE';
+    return '<tr>'+td('font-weight:600;color:#0F1F38',item.title)+td('color:#3A5474',item.due)+td('color:#64748B;font-size:10px',item.details||'')+td('text-align:center',badge(sc,sl))+'</tr>';
+  }).join('');
+
+  var warRows = war ? war.warranties.map(function(w) {
+    var days = Math.ceil((new Date(w.endDate).getTime()-Date.now())/86400000);
+    var sc = days<0?'#DC2626':days<90?'#D97706':'#16A34A';
+    var sl = days<0?'EXPIRED':days<90?'EXPIRING':'ACTIVE';
+    var icons = {airframe:'&#9992;',engine:'&#9881;',avionics:'&#8693;',component:'&#9874;'};
+    return '<tr>'+td('font-weight:600;color:#0F1F38',(icons[w.type]||'&#9874;')+' '+w.label)+td('color:#3A5474',w.provider)+td('color:#3A5474',w.startDate)+td('color:'+sc+';font-weight:600',w.endDate)+td('text-align:center',badge(sc,sl))+'</tr>';
+  }).join('') : '<tr><td colspan="5" style="padding:10px;text-align:center;color:#64748B">No warranty data on file</td></tr>';
+
+  var lbRows = lbEntries.map(function(e) {
+    var sc = e.signed ? '#16A34A' : '#D97706';
+    var sl = e.signed ? '&#10003; SIGNED' : '&#9203; PENDING';
+    return '<tr>'+td('color:#64748B;font-family:monospace;font-size:10px',e.date)+td('font-weight:600;color:#0F1F38',e.type)+td('color:#3A5474',e.shop||'')+td('color:#3A5474',e.findings||e.notes||'')+td('text-align:center;color:'+sc+';font-weight:700;font-size:9px',sl)+'</tr>';
+  }).join('');
+
+  var doc = '<!DOCTYPE html><html><head><meta charset="UTF-8">' +
+    '<title>PlaneFax&#8482; &#8212; '+reg+' &#8212; '+today+'</title>' +
+    '<style>@page{margin:.55in;size:letter}' +
+    'body{font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;color:#0F1F38;margin:0;padding:0;font-size:11px;line-height:1.5}' +
+    'h2{font-size:11px;font-weight:700;color:#1B3A6B;margin:14px 0 5px;letter-spacing:.06em;text-transform:uppercase;padding:0 20px}' +
+    'table{width:100%;border-collapse:collapse;margin-bottom:12px}' +
+    'thead tr{background:#1B3A6B}' +
+    'tr:nth-child(even) td{background:#F8FAFC}</style></head><body>' +
+
+    '<div style="background:#1B3A6B;padding:18px 24px;display:flex;align-items:center;justify-content:space-between">' +
+      '<div><div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:.04em">&#9992; PLANEFAX&#8482;</div>' +
+      '<div style="font-size:9px;color:#CADCFC;margin-top:2px;letter-spacing:.1em">DIGITAL MAINTENANCE RECORD &#8212; AIRWAYS MRO PLATFORM</div></div>' +
+      '<div style="text-align:right"><div style="font-size:20px;font-weight:800;color:#fff;letter-spacing:.06em">'+reg+'</div>' +
+      '<div style="font-size:10px;color:#CADCFC">'+today+'</div></div>' +
+    '</div>' +
+
+    '<div style="background:#F1F5FA;padding:10px 20px;border-bottom:3px solid #1B3A6B;display:flex;gap:20px;flex-wrap:wrap;align-items:center">' +
+      '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Aircraft</div><div style="font-weight:700;font-size:12px">'+ac.model+'</div></div>' +
+      '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Serial #</div><div style="font-weight:700">'+ac.serial+'</div></div>' +
+      '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Year</div><div style="font-weight:700">'+ac.year+'</div></div>' +
+      '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Base</div><div style="font-weight:700">'+ac.base+'</div></div>' +
+      '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Category</div><div style="font-weight:700">'+ac.category+'</div></div>' +
+      '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Status</div><div style="font-weight:700;color:#16A34A;text-transform:uppercase">'+ac.status+'</div></div>' +
+      (totalHours ? '<div><div style="font-size:7px;color:#64748B;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Total Hours</div><div style="font-weight:700">'+totalHours+' hrs</div></div>' : '') +
+    '</div>' +
+
+    '<div style="padding:10px 20px;background:#fff;border-bottom:1px solid #E2E8F0">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">' +
+        '<div style="font-size:9px;font-weight:700;color:#1B3A6B;text-transform:uppercase;letter-spacing:.08em">PlaneFax&#8482; Completion</div>' +
+        '<div style="font-size:11px;font-weight:800;color:'+pfColor+'">'+pfPct+'% &#8212; '+ac.planefax.completed+'/'+ac.planefax.total+' items signed off</div></div>' +
+      '<div style="background:#E2E8F0;border-radius:3px;height:6px"><div style="background:'+pfColor+';height:6px;border-radius:3px;width:'+pfPct+'%"></div></div>' +
+    '</div>' +
+
+    '<h2>Airworthiness &amp; Compliance</h2>' +
+    '<table><thead><tr>'+th(true,'Requirement')+th(false,'Due Date')+th(false,'Details')+th(false,'Status')+'</tr></thead><tbody>'+awRows+'</tbody></table>' +
+
+    '<h2>Warranty Register</h2>' +
+    '<table><thead><tr>'+th(true,'Warranty')+th(false,'Provider')+th(false,'Start')+th(false,'Expiry')+th(false,'Status')+'</tr></thead><tbody>'+warRows+'</tbody></table>' +
+
+    '<h2>Maintenance Logbook</h2>' +
+    '<table><thead><tr>'+th(true,'Date')+th(false,'Service Type')+th(false,'Facility')+th(false,'Findings / Notes')+th(false,'Signed')+'</tr></thead><tbody>'+lbRows+'</tbody></table>' +
+
+    '<div style="margin:0 20px 14px;padding:14px;background:#F1F5FA;border:1px solid #E2E8F0;border-radius:5px">' +
+      '<div style="font-size:8px;font-weight:700;color:#1B3A6B;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px">Signatures &amp; Certification</div>' +
+      '<div style="display:flex;gap:20px">' +
+        '<div style="flex:1"><div style="font-size:8px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:24px">Owner / Authorized Representative</div><div style="border-top:1px solid #0F1F38;padding-top:3px;font-size:8px;color:#64748B">Signature &amp; Date</div></div>' +
+        '<div style="flex:1"><div style="font-size:8px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:24px">A&amp;P / IA Mechanic &#8212; Cert #</div><div style="border-top:1px solid #0F1F38;padding-top:3px;font-size:8px;color:#64748B">Certificate # &amp; Signature</div></div>' +
+        '<div style="flex:1"><div style="font-size:8px;color:#64748B;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:24px">MRO / FAA Repair Station #</div><div style="border-top:1px solid #0F1F38;padding-top:3px;font-size:8px;color:#64748B">Station # &amp; Date</div></div>' +
+      '</div></div>' +
+
+    '<div style="background:#1B3A6B;padding:7px 20px;display:flex;justify-content:space-between;align-items:center">' +
+      '<div style="color:#CADCFC;font-size:8px;letter-spacing:.04em">PLANEFAX&#8482; &#8212; '+reg+' &#8212; '+today+'</div>' +
+      '<div style="color:#CADCFC;font-size:8px">Generated by AirWays &#183; FOR REFERENCE ONLY &#8212; Not an FAA Document</div>' +
+    '</div></body></html>';
+
+  var win = window.open('', '_blank', 'width=900,height=1100');
+  if (!win) { if (window.showToast) showToast('Allow pop-ups to export PDF', 'error'); return; }
+  win.document.write(doc);
+  win.document.close();
+  win.focus();
+  setTimeout(function() { win.print(); }, 500);
+  if (window.showToast) showToast('PlaneFax\u2122 ready \u2014 choose \u201CSave as PDF\u201D in print dialog', 'success');
+};
+</script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -10225,6 +10467,23 @@ window.t2Nav = function(page, el) {
 console.log('✅ MRO Inventory system loaded');
 </script>
 
+<script>
+// ── Stub functions for UI elements pending full implementation ──
+window.openPhotoViewer = function(idx) {
+  var labels = ['Pre-inspection — Engine Bay','Oil Filter — Removed','Brake Wear — Left Main','New Brake Assembly — Installed','Avionics — Wiring Check'];
+  showToast('📷 ' + (labels[idx] || 'Photo ' + (idx+1)) + ' — full viewer coming soon', 'info');
+};
+window.exportPhotoReport = function() {
+  showToast('📄 Photo report export coming soon', 'info');
+};
+window.openTechDoc = function(docId) {
+  showToast('📗 Opening ' + docId + ' — document viewer coming soon', 'info');
+};
+window.showLogbookQR = function() {
+  showToast('📱 QR Code sharing coming soon', 'info');
+};
+</script>
+
 <!-- Part Detail Modal -->
 <div class="modal-bg hidden" id="modalPartDetail">
   <div class="modal-sheet" style="max-width:580px">
@@ -10319,12 +10578,12 @@ console.log('✅ MRO Inventory system loaded');
       <label class="form-label">Reason</label>
       <input class="form-input" placeholder="e.g. Manufacturer safety notice..." style="margin-bottom:12px">
       <div style="display:flex;gap:8px;justify-content:flex-end">
-        <button class="btn btn-secondary" onclick="closeModal('modalBatchRecal  if (req.status === \'quoted\' && viewMode === \'mro\') {
-    statusContent = `<div class="rc-status-content" style="background:var(--amber-d);border-left:3px solid var(--amber);border-radius:8px;padding:12px 16px;margin-top:8px">
-      <div style="font-weight:700;font-size:12px;color:var(--amber);margin-bottom:4px">💰 Quote Sent — Awaiting Owner Approval</div>
-      ${req.quote ? `<div style="font-size:12px;color:var(--text2)">Quoted: <strong>$${req.quote.total.toLocaleString()}</strong> · ${req.quote.duration || 'TBD'} · Sent to ${req.owner_name}</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:3px">Quote expires in 72 hours · Awaiting acceptance</div>` : \'\'}
-    </div>`;
-  }
+        <button class="btn btn-secondary" onclick="closeModal('modalBatchRecall')">Cancel</button>
+        <button class="btn btn-primary" style="background:var(--red,#FF4560)" onclick="closeModal('modalBatchRecall');showToast('Batch recall initiated — all matching lots quarantined','error')">⛔ Initiate Recall</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  l
+</body>
+</html>
